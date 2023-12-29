@@ -18,8 +18,12 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
+        Escalar escalar = new Escalar();
+        
+        //Redondear el botón del Login
         botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );
         
+        escalar.escalarLabel(labelIcono,"/img/logo.png");
     }
 
     /**
@@ -38,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         labelCorreo = new javax.swing.JLabel();
         textFieldPassword = new javax.swing.JTextField();
         botonLogin = new javax.swing.JButton();
+        labelIcono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 550));
@@ -46,68 +51,46 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
+        panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLogin.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         labelLogin.setForeground(new java.awt.Color(181, 2, 2));
         labelLogin.setText("BIENVENIDO");
+        panelFondo.add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 64, -1, -1));
 
         labelPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(181, 2, 2));
         labelPassword.setText("Contraseña");
+        panelFondo.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 197, -1, -1));
 
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCorreoActionPerformed(evt);
             }
         });
+        panelFondo.add(textFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 146, 249, -1));
 
         labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
         labelCorreo.setText("Correo");
+        panelFondo.add(labelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 124, -1, -1));
 
         textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldPasswordActionPerformed(evt);
             }
         });
+        panelFondo.add(textFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 219, 249, -1));
 
         botonLogin.setBackground(new java.awt.Color(181, 2, 2));
         botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(255, 255, 255));
         botonLogin.setText("Login");
+        panelFondo.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 299, 249, 42));
 
-        javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
-        panelFondo.setLayout(panelFondoLayout);
-        panelFondoLayout.setHorizontalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelCorreo)
-                    .addComponent(labelLogin)
-                    .addComponent(labelPassword)
-                    .addComponent(textFieldCorreo)
-                    .addComponent(textFieldPassword)
-                    .addComponent(botonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
-                .addContainerGap(473, Short.MAX_VALUE))
-        );
-        panelFondoLayout.setVerticalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(labelLogin)
-                .addGap(30, 30, 30)
-                .addComponent(labelCorreo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
-        );
+        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        labelIcono.setText("jLabel1");
+        panelFondo.add(labelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 140, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +152,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonLogin;
     private javax.swing.JLabel labelCorreo;
+    private javax.swing.JLabel labelIcono;
     private javax.swing.JLabel labelLogin;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel panelFondo;
