@@ -4,9 +4,11 @@
  */
 package com.mycompany.practicafinal_davidsanchez;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 /**
  *
- * @author David
+ * @author David Sánchez
  */
 public class Login extends javax.swing.JFrame {
 
@@ -15,6 +17,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );
         
     }
 
@@ -28,18 +32,81 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         panelFondo = new javax.swing.JPanel();
+        labelLogin = new javax.swing.JLabel();
+        labelPassword = new javax.swing.JLabel();
+        textFieldCorreo = new javax.swing.JTextField();
+        labelCorreo = new javax.swing.JLabel();
+        textFieldPassword = new javax.swing.JTextField();
+        botonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 550));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+        setResizable(false);
+
+        panelFondo.setBackground(new java.awt.Color(0, 0, 0));
+
+        labelLogin.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        labelLogin.setForeground(new java.awt.Color(181, 2, 2));
+        labelLogin.setText("BIENVENIDO");
+
+        labelPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(181, 2, 2));
+        labelPassword.setText("Contraseña");
+
+        textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCorreoActionPerformed(evt);
+            }
+        });
+
+        labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
+        labelCorreo.setText("Correo");
+
+        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldPasswordActionPerformed(evt);
+            }
+        });
+
+        botonLogin.setBackground(new java.awt.Color(181, 2, 2));
+        botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        botonLogin.setText("Login");
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(panelFondoLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelCorreo)
+                    .addComponent(labelLogin)
+                    .addComponent(labelPassword)
+                    .addComponent(textFieldCorreo)
+                    .addComponent(textFieldPassword)
+                    .addComponent(botonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                .addContainerGap(473, Short.MAX_VALUE))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(panelFondoLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(labelLogin)
+                .addGap(30, 30, 30)
+                .addComponent(labelCorreo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(labelPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -55,6 +122,14 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCorreoActionPerformed
+
+    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,7 +157,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        FlatLightLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -92,6 +167,12 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonLogin;
+    private javax.swing.JLabel labelCorreo;
+    private javax.swing.JLabel labelLogin;
+    private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JTextField textFieldCorreo;
+    private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 }
