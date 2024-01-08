@@ -45,9 +45,7 @@ public class Login extends javax.swing.JFrame {
         labelIcono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 550));
         setMinimumSize(new java.awt.Dimension(800, 550));
-        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -90,17 +88,17 @@ public class Login extends javax.swing.JFrame {
 
         labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         labelIcono.setText("jLabel1");
-        panelFondo.add(labelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 140, 130));
+        panelFondo.add(labelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 280, 250));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
