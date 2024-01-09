@@ -4,6 +4,7 @@
  */
 package com.mycompany.practicafinal_davidsanchez;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -30,12 +31,11 @@ public class EmailUtil {
      msg.setText(body, "UTF-8");
      msg.setSentDate(new Date());
      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-     System.out.println("Message is ready");
+     System.out.println("El mensaje está listo");
      Transport.send(msg);
-     System.out.println("EMail Sent Succesfully!!");
+     System.out.println("EMail enviado correctamente");
      
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (UnsupportedEncodingException | MessagingException e) {
     }
   }
 }

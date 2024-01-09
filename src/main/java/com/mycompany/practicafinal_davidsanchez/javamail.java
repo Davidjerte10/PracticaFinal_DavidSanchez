@@ -4,7 +4,6 @@
  */
 package com.mycompany.practicafinal_davidsanchez;
 
-import com.mycompany.practicafinal_davidsanchez.EmailUtil;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
@@ -86,7 +85,7 @@ public class javamail extends javax.swing.JFrame {
             
             Session session = Session.getDefaultInstance(props, auth);
             System.out.println("Session created");
-            EmailUtil.sendEmail(session, toEmail, "SSLEmail Testing Subject", "SSLEmail Testing Body");
+            EmailUtil.sendEmail(session, toEmail, "Prueba correo", "Bienvenido a David Gym");
             
     }//GEN-LAST:event_enviarActionPerformed
 
