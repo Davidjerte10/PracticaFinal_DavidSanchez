@@ -88,7 +88,7 @@ public class Login extends javax.swing.JFrame {
 
         labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         labelIcono.setText("jLabel1");
-        panelFondo.add(labelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 280, 250));
+        panelFondo.add(labelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 310, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
