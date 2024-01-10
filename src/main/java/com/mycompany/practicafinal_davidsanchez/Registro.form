@@ -55,30 +55,24 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="textFieldCorreo" min="-2" pref="249" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="botonLogin" min="-2" pref="249" max="-2" attributes="0"/>
+                          <Component id="labelCorreo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textFieldPassword" min="-2" pref="249" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="checkBoxCuenta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="labelOlvidada" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="textFieldCorreo" min="-2" pref="249" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="labelCorreo" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textFieldPassword" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonLogin" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreo1" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="labelCorreo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreo2" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="labelCorreo2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
@@ -93,25 +87,31 @@
                   <Component id="labelLogin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Component id="labelIcono" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="labelCorreo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="textFieldCorreo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="labelCorreo1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textFieldCorreo1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="labelCorreo2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textFieldCorreo2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="textFieldPassword" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelOlvidada" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkBoxCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="botonLogin" min="-2" pref="42" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="labelIcono" min="-2" pref="260" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="botonLogin" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -125,7 +125,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2" green="2" red="b5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="BIENVENIDO"/>
+            <Property name="text" type="java.lang.String" value="REGISTRATE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPassword">
@@ -152,7 +152,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2" green="2" red="b5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Correo"/>
+            <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldPassword">
@@ -182,18 +182,39 @@
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelOlvidada">
+        <Component class="javax.swing.JTextField" name="textFieldCorreo1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCorreo1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCorreo1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
+              <Font name="Verdana" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2" green="2" red="b5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a olvidada?"/>
+            <Property name="text" type="java.lang.String" value="Apellidos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxCuenta">
+        <Component class="javax.swing.JTextField" name="textFieldCorreo2">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCorreo2ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCorreo2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2" green="2" red="b5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Correo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
@@ -201,7 +222,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2" green="2" red="b5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="No tengo cuenta"/>
+            <Property name="text" type="java.lang.String" value="Acepto los t&#xe9;rminos y condiciones"/>
           </Properties>
         </Component>
       </SubComponents>
