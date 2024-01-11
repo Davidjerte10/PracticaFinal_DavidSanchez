@@ -45,6 +45,8 @@ public class RecuperarPassword extends javax.swing.JFrame {
         labelCorreo = new javax.swing.JLabel();
         botonRecuperar = new javax.swing.JButton();
         labelIcono = new javax.swing.JLabel();
+        textFieldPassword = new javax.swing.JTextField();
+        labelPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 550));
@@ -79,6 +81,16 @@ public class RecuperarPassword extends javax.swing.JFrame {
         labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         labelIcono.setText("jLabel1");
 
+        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldPasswordActionPerformed(evt);
+            }
+        });
+
+        labelPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(181, 2, 2));
+        labelPassword.setText("Nueva Contraseña");
+
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
@@ -91,7 +103,9 @@ public class RecuperarPassword extends javax.swing.JFrame {
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelCorreo)
                             .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPassword))
                         .addGap(72, 72, 72)
                         .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -106,10 +120,14 @@ public class RecuperarPassword extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(labelCorreo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(labelPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,6 +174,10 @@ public class RecuperarPassword extends javax.swing.JFrame {
             EmailUtil.sendEmail(session, toEmail, "Prueba correo", "Bienvenido a David Gym");
     }//GEN-LAST:event_botonRecuperarActionPerformed
 
+    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldPasswordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,8 +217,10 @@ public class RecuperarPassword extends javax.swing.JFrame {
     private javax.swing.JButton botonRecuperar;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelIcono;
+    private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRecuperar;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JTextField textFieldCorreo;
+    private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 }
