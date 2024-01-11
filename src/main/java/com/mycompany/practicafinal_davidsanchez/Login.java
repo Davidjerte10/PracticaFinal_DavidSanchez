@@ -80,6 +80,11 @@ public class Login extends javax.swing.JFrame {
         botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(255, 255, 255));
         botonLogin.setText("Login");
+        botonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLoginActionPerformed(evt);
+            }
+        });
 
         labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         labelIcono.setText("jLabel1");
@@ -170,6 +175,10 @@ public class Login extends javax.swing.JFrame {
     private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldPasswordActionPerformed
+
+    private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLoginActionPerformed
 
     /**
      * @param args the command line arguments
