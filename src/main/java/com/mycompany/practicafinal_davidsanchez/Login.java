@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         checkBoxCuenta = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setMinimumSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
@@ -92,10 +93,20 @@ public class Login extends javax.swing.JFrame {
         labelOlvidada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         labelOlvidada.setForeground(new java.awt.Color(181, 2, 2));
         labelOlvidada.setText("Contraseña olvidada?");
+        labelOlvidada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelOlvidadaMouseClicked(evt);
+            }
+        });
 
         checkBoxCuenta.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         checkBoxCuenta.setForeground(new java.awt.Color(181, 2, 2));
         checkBoxCuenta.setText("No tengo cuenta");
+        checkBoxCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxCuentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -179,6 +190,17 @@ public class Login extends javax.swing.JFrame {
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonLoginActionPerformed
+
+    private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        
+    }//GEN-LAST:event_checkBoxCuentaActionPerformed
+
+    private void labelOlvidadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidadaMouseClicked
+        RecuperarPassword recuperar = new RecuperarPassword();
+        recuperar.setVisible(true);
+    }//GEN-LAST:event_labelOlvidadaMouseClicked
 
     /**
      * @param args the command line arguments
