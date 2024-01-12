@@ -32,5 +32,15 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.24.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId> <!-- o el grupo correspondiente a tu base de datos -->
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version> <!-- o la versión correspondiente -->
+        </dependency>
     </dependencies>
 </project>
