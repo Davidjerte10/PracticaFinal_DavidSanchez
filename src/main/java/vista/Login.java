@@ -7,6 +7,18 @@ package vista;
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import com.password4j.Hash;
+import com.password4j.HashChecker;
+import com.password4j.Password;
+import controlador.HibernateUtil;
+import java.util.List;
+import modelo.Usuarios;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+
 /**
  *
  * @author David Sánchez
@@ -41,11 +53,11 @@ public class Login extends javax.swing.JFrame {
         labelPassword = new javax.swing.JLabel();
         textFieldCorreo = new javax.swing.JTextField();
         labelCorreo = new javax.swing.JLabel();
-        textFieldPassword = new javax.swing.JTextField();
         botonLogin = new javax.swing.JButton();
         labelIcono = new javax.swing.JLabel();
         labelOlvidada = new javax.swing.JLabel();
         checkBoxCuenta = new javax.swing.JCheckBox();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -71,12 +83,6 @@ public class Login extends javax.swing.JFrame {
         labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
         labelCorreo.setText("Correo");
-
-        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldPasswordActionPerformed(evt);
-            }
-        });
 
         botonLogin.setBackground(new java.awt.Color(181, 2, 2));
         botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -109,6 +115,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
@@ -129,15 +141,15 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelFondoLayout.createSequentialGroup()
-                                .addComponent(checkBoxCuenta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelOlvidada))))
+                        .addComponent(labelCorreo))
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addComponent(labelCorreo)))
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordField)
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addComponent(checkBoxCuenta)
+                                .addGap(47, 47, 47)
+                                .addComponent(labelOlvidada)))))
                 .addGap(70, 70, 70)
                 .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -155,9 +167,9 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(labelPassword)
-                        .addGap(3, 3, 3)
-                        .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelOlvidada)
                             .addComponent(checkBoxCuenta))
@@ -184,12 +196,46 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
-    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldPasswordActionPerformed
-
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-        // TODO add your handling code here:
+            // Recuperar la información del campo de texto
+        String correo = textFieldCorreo.getText();
+        char[] passwordChars = passwordField.getPassword();
+
+        // Convertir la contraseña a String para poder utilizarla
+        String password = new String(passwordChars);
+
+        // Realizar la verificación en la base de datos
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+
+            // Recuperar el usuario por su correo
+            Query query = session.createQuery("FROM Usuarios WHERE email = :correo");
+            query.setParameter("correo", correo);
+            Usuarios usuario = (Usuarios) query.uniqueResult();
+
+            if (usuario != null) {
+                // Verificar la contraseña utilizando password4j
+                HashChecker hashChecker = Password.check(password).withHash(usuario.getPassword());
+
+                // Realizar la verificación
+                if (hashChecker.verify()) {
+                    System.out.println("Inicio de sesión exitoso.");
+                } else {
+                    System.out.println("Contraseña incorrecta.");
+                }
+            } else {
+                System.out.println("Usuario no encontrado.");
+            }
+
+            tx.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al intentar iniciar sesión.");
+        }
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
@@ -202,6 +248,10 @@ public class Login extends javax.swing.JFrame {
         RecuperarPassword recuperar = new RecuperarPassword();
         recuperar.setVisible(true);
     }//GEN-LAST:event_labelOlvidadaMouseClicked
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +297,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel labelOlvidada;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField textFieldCorreo;
-    private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

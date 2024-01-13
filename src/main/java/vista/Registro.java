@@ -12,6 +12,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.password4j.Hash;
+import com.password4j.Password;
+
+
 /**
  *
  * @author David Sánchez
@@ -219,20 +223,26 @@ public class Registro extends javax.swing.JFrame {
         String nombre = textFieldNombre.getText();
         String apellidos = textFieldApellidos.getText();
         String correo = textFieldCorreo.getText();
-        String password = passwordField.getText();
+        char[] passwordChars = passwordField.getPassword();
+        
+        // Convertimos la contraseña a String para poder utilizarla
+        String password = new String(passwordChars);
 
         // Validar que los campos no estén vacíos
         if (nombre.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || password.isEmpty()) {
             System.out.println("Por favor, complete todos los campos.");
             return;
         }
+        
+        // Hashear la contraseña utilizando PBKDF2
+        Hash hashPassword = Password.hash(password).withPBKDF2();
 
         // Crear un nuevo objeto Usuarios con la información proporcionada
         Usuarios nuevoUsuario = new Usuarios();
         nuevoUsuario.setNombre(nombre);
         nuevoUsuario.setApellidos(apellidos);
         nuevoUsuario.setEmail(correo);
-        nuevoUsuario.setPassword(password);
+        nuevoUsuario.setPassword(hashPassword.getResult()); // Guardar el hash en lugar de la contraseña en texto plano
 
         // Realizar la inserción en la base de datos
         try {
@@ -248,7 +258,7 @@ public class Registro extends javax.swing.JFrame {
             
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error al registrar usuario en la base de datos.");
+            System.out.println("Error al registrar el usuario en la base de datos.");
         }
     }//GEN-LAST:event_botonRegistroActionPerformed
 
