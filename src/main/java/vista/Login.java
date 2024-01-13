@@ -6,12 +6,9 @@ package vista;
 
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
-
-import com.password4j.Hash;
 import com.password4j.HashChecker;
 import com.password4j.Password;
 import controlador.HibernateUtil;
-import java.util.List;
 import modelo.Usuarios;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -197,45 +194,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-            // Recuperar la información del campo de texto
-        String correo = textFieldCorreo.getText();
-        char[] passwordChars = passwordField.getPassword();
 
-        // Convertir la contraseña a String para poder utilizarla
-        String password = new String(passwordChars);
-
-        // Realizar la verificación en la base de datos
-        try {
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            Transaction tx = session.beginTransaction();
-
-            // Recuperar el usuario por su correo
-            Query query = session.createQuery("FROM Usuarios WHERE email = :correo");
-            query.setParameter("correo", correo);
-            Usuarios usuario = (Usuarios) query.uniqueResult();
-
-            if (usuario != null) {
-                // Verificar la contraseña utilizando password4j
-                HashChecker hashChecker = Password.check(password).withHash(usuario.getPassword());
-
-                // Realizar la verificación
-                if (hashChecker.verify()) {
-                    System.out.println("Inicio de sesión exitoso.");
-                } else {
-                    System.out.println("Contraseña incorrecta.");
-                }
-            } else {
-                System.out.println("Usuario no encontrado.");
-            }
-
-            tx.commit();
-            session.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al intentar iniciar sesión.");
-        }
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
