@@ -64,15 +64,15 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldPassword" min="-2" pref="249" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonRegistro" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
-                              <Component id="textFieldApellidos" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="botonRegistro" alignment="0" pref="249" max="32767" attributes="0"/>
+                              <Component id="textFieldApellidos" alignment="0" pref="249" max="32767" attributes="0"/>
                               <Component id="labelApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldCorreo" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreo" alignment="0" pref="249" max="32767" attributes="0"/>
                               <Component id="labelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="checkBoxTerminos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -105,7 +105,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldPassword" min="-2" max="-2" attributes="0"/>
+                          <Component id="passwordField" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="checkBoxTerminos" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -155,11 +155,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textFieldPassword">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPasswordActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonRegistro">
           <Properties>
@@ -231,6 +226,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxTerminosActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passwordField">
         </Component>
       </SubComponents>
     </Container>

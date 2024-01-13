@@ -6,6 +6,11 @@ package vista;
 
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
+import controlador.HibernateUtil;
+import modelo.Usuarios;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -42,7 +47,6 @@ public class Registro extends javax.swing.JFrame {
         labelPassword = new javax.swing.JLabel();
         textFieldNombre = new javax.swing.JTextField();
         labelNombre = new javax.swing.JLabel();
-        textFieldPassword = new javax.swing.JTextField();
         botonRegistro = new javax.swing.JButton();
         labelIcono = new javax.swing.JLabel();
         textFieldApellidos = new javax.swing.JTextField();
@@ -50,6 +54,7 @@ public class Registro extends javax.swing.JFrame {
         textFieldCorreo = new javax.swing.JTextField();
         labelCorreo = new javax.swing.JLabel();
         checkBoxTerminos = new javax.swing.JCheckBox();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
@@ -75,12 +80,6 @@ public class Registro extends javax.swing.JFrame {
         labelNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(181, 2, 2));
         labelNombre.setText("Nombre");
-
-        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldPasswordActionPerformed(evt);
-            }
-        });
 
         botonRegistro.setBackground(new java.awt.Color(181, 2, 2));
         botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -141,15 +140,15 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelPassword)
-                            .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                            .addComponent(textFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                             .addComponent(labelApellidos)
-                            .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                             .addComponent(labelCorreo)
-                            .addComponent(checkBoxTerminos))))
+                            .addComponent(checkBoxTerminos)
+                            .addComponent(passwordField))))
                 .addGap(70, 70, 70)
                 .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -177,7 +176,7 @@ public class Registro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(checkBoxTerminos)))
                 .addGap(27, 27, 27)
@@ -203,10 +202,6 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNombreActionPerformed
 
-    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldPasswordActionPerformed
-
     private void textFieldApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldApellidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldApellidosActionPerformed
@@ -220,7 +215,41 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxTerminosActionPerformed
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        // TODO add your handling code here:
+        // Recuperar la información de los campos de texto
+        String nombre = textFieldNombre.getText();
+        String apellidos = textFieldApellidos.getText();
+        String correo = textFieldCorreo.getText();
+        String password = passwordField.getText();
+
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || password.isEmpty()) {
+            System.out.println("Por favor, complete todos los campos.");
+            return;
+        }
+
+        // Crear un nuevo objeto Usuarios con la información proporcionada
+        Usuarios nuevoUsuario = new Usuarios();
+        nuevoUsuario.setNombre(nombre);
+        nuevoUsuario.setApellidos(apellidos);
+        nuevoUsuario.setEmail(correo);
+        nuevoUsuario.setPassword(password);
+
+        // Realizar la inserción en la base de datos
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            
+            Session session = sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+            
+            session.save(nuevoUsuario);
+            tx.commit();
+            
+            System.out.println("Usuario registrado exitosamente.");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al registrar usuario en la base de datos.");
+        }
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,9 +262,9 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRegistro;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField textFieldApellidos;
     private javax.swing.JTextField textFieldCorreo;
     private javax.swing.JTextField textFieldNombre;
-    private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

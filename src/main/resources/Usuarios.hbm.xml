@@ -13,7 +13,7 @@
             <column length="50" name="apellidos" not-null="true"/>
         </property>
         <property name="password" type="string">
-            <column length="50" name="password" not-null="true"/>
+            <column length="150" name="password" not-null="true"/>
         </property>
         <property name="email" type="string">
             <column length="25" name="email" not-null="true"/>
