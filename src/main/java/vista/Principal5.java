@@ -1,3 +1,6 @@
+package vista;
+
+import controlador.HibernateUtil;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -22,7 +25,7 @@ public class Principal5 {
 		List<Usuarios> usuarios = q.getResultList();
 		
 		for (Usuarios e: usuarios) 
-			System.out.println(e.getNombre());
+			System.out.println(e.getNombre() + e.getApellidos());
 				
 		sesion.close();
 	}

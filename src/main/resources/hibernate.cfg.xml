@@ -9,10 +9,10 @@
         <property name="hibernate.hbm2ddl.auto">none</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
-        <mapping resource="modelo/Reservas.hbm.xml"/>
-        <mapping resource="modelo/Usuarios.hbm.xml"/>
-        <mapping resource="modelo/Monitores.hbm.xml"/>
-        <mapping resource="modelo/Actividades.hbm.xml"/>
-        <mapping resource="modelo/Horarios.hbm.xml"/>
+        <mapping resource="Reservas.hbm.xml"/>
+        <mapping resource="Usuarios.hbm.xml"/>
+        <mapping resource="Monitores.hbm.xml"/>
+        <mapping resource="Actividades.hbm.xml"/>
+        <mapping resource="Horarios.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

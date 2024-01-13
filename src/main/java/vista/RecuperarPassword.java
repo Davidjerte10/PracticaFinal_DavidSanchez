@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.practicafinal_davidsanchez;
+package vista;
 
+import controlador.Escalar;
+import controlador.EmailUtil;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.util.Properties;
 import javax.mail.Authenticator;
