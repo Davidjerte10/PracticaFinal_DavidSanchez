@@ -30,10 +30,11 @@ public class Login extends javax.swing.JFrame {
         
         Escalar escalar = new Escalar();
         
-        //Redondear el botón del Login
-        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );
-        
+        // Llamar al método para escalar el icono y que se vea bien
         escalar.escalarLabel(labelIcono,"/img/logo.png");
+        
+        //Redondear el botón del Login
+        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );              
     }
 
     /**
@@ -194,12 +195,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-        // Recuperar la información de los campos de texto
+        // Coger la información de los campos de texto
         String correo = textFieldCorreo.getText();
-        char[] passwordChars = passwordField.getPassword();
+        char[] passwordCaracteres = passwordField.getPassword();
 
         // Convertir la contraseña a String para utilizarla
-        String password = new String(passwordChars);
+        String password = new String(passwordCaracteres);
 
         // Validar que los campos no estén vacíos
         if (correo.isEmpty() || password.isEmpty()) {
@@ -208,14 +209,14 @@ public class Login extends javax.swing.JFrame {
         }
 
         try {
-            // Realizar la verificación de credenciales en la base de datos
+            // Establecer conexión con la base de datos
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session sesion = sessionFactory.openSession();
 
-            Query query = sesion.createQuery("FROM Usuarios WHERE email = :correo");
-            query.setParameter("correo", correo);
+            Query q = sesion.createQuery("FROM Usuarios WHERE email = :correo");
+            q.setParameter("correo", correo);
             
-            Usuarios usuario = (Usuarios) query.uniqueResult();
+            Usuarios usuario = (Usuarios) q.uniqueResult();
 
             // Verificar si se encontró un usuario con el correo proporcionado
             if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {

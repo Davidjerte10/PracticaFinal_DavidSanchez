@@ -27,7 +27,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class RecuperarPassword extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form RecuperarPassword
      */
     public RecuperarPassword() {
         initComponents();
@@ -35,11 +35,11 @@ public class RecuperarPassword extends javax.swing.JFrame {
         
         Escalar escalar = new Escalar();
         
-        //Redondear el botón del Login
-        botonRecuperar.putClientProperty( "JButton.buttonType", "roundRect" );
-        
         // Llamar al método para escalar el icono y que se vea bien
         escalar.escalarLabel(labelIcono,"/img/logo.png");
+        
+        //Redondear el botón del Login
+        botonRecuperar.putClientProperty( "JButton.buttonType", "roundRect" );      
     }
 
     /**
@@ -144,7 +144,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
     private void botonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRecuperarActionPerformed
-        // TODO add your handling code here:
+        // Configurar envío del correo
         final String fromEmail = "davidjerte10@gmail.com";
         final String password = "xvfjgmjqtzmxmyjk";
         final String toEmail = textFieldCorreo.getText();
@@ -171,7 +171,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         // Longitud de la nueva contraseña
-        int longitudPassword = 4;
+        int longitudPassword = 8;
         
         // Crear un StringBuilder para construir la nueva contraseña
         StringBuilder nuevaPassword = new StringBuilder(longitudPassword);
@@ -192,29 +192,29 @@ public class RecuperarPassword extends javax.swing.JFrame {
         String nuevaPasswordString = nuevaPassword.toString();
 
         // Llamada al Método que actualiza la contraseña en la base de datos
-        actualizarContraseña(toEmail, nuevaPasswordString);
+        actualizarPassword(toEmail, nuevaPasswordString);
 
         System.out.println("Correo enviado y contraseña actualizada con éxito.");
     }//GEN-LAST:event_botonRecuperarActionPerformed
      
-    private void actualizarContraseña(String correo, String nuevaContraseña) {
+    private void actualizarPassword(String correo, String nuevaPassword) {
         try {
-            // Abrir la sesión de Hibernate
+            // Establecer conexión
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            // He tenido que importar así a Session porque me daba fallo con el otro import del correo
             org.hibernate.Session sesion = sessionFactory.openSession();
             
             Transaction tx = sesion.beginTransaction();
 
-            Query query = sesion.createQuery("FROM Usuarios WHERE email = :correo");
-            query.setParameter("correo", correo);
+            Query q = sesion.createQuery("FROM Usuarios WHERE email = :correo");
+            q.setParameter("correo", correo);
 
-            Usuarios usuario = (Usuarios) query.uniqueResult();
+            Usuarios usuario = (Usuarios) q.uniqueResult();
 
             if (usuario != null) {
                 // Actualizar la contraseña del usuario
-                usuario.setPassword(BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt()));
+                usuario.setPassword(BCrypt.hashpw(nuevaPassword, BCrypt.gensalt()));
 
-                // Guardar los cambios en la base de datos
                 sesion.save(usuario);
                 tx.commit();
 

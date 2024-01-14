@@ -24,7 +24,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class Registro extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form Registro
      */
     public Registro() {
         initComponents();
@@ -32,10 +32,11 @@ public class Registro extends javax.swing.JFrame {
         
         Escalar escalar = new Escalar();
         
-        //Redondear el botón del Login
-        botonRegistro.putClientProperty( "JButton.buttonType", "roundRect" );
-        
+        // Llamar al método para escalar el icono y que se vea bien
         escalar.escalarLabel(labelIcono,"/img/logo.png");
+        
+        //Redondear el botón del Login
+        botonRegistro.putClientProperty( "JButton.buttonType", "roundRect" );    
     }
 
     /**
@@ -235,11 +236,11 @@ public class Registro extends javax.swing.JFrame {
             return;
         }
         
-        // Hashear la contraseña utilizando PBKDF2
+        // Hashear la contraseña utilizando BCrypt
         String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        // Realizar la inserción en la base de datos
         try {
+            // Establecer conexión
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             
             Session sesion = sessionFactory.openSession();
