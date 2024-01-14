@@ -8,6 +8,7 @@ import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.HibernateUtil;
 import modelo.Usuarios;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -237,27 +238,27 @@ public class Registro extends javax.swing.JFrame {
         // Hashear la contraseña utilizando PBKDF2
         String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        // Crear un nuevo objeto Usuarios con la información proporcionada
-        Usuarios nuevoUsuario = new Usuarios();
-        nuevoUsuario.setNombre(nombre);
-        nuevoUsuario.setApellidos(apellidos);
-        nuevoUsuario.setEmail(correo);
-        nuevoUsuario.setPassword(hashPassword); // Guardar el hash en lugar de la contraseña en texto plano
-
         // Realizar la inserción en la base de datos
         try {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             
-            Session session = sessionFactory.openSession();
-            Transaction tx = session.beginTransaction();
+            Session sesion = sessionFactory.openSession();
+            Transaction tx = sesion.beginTransaction();
             
-            session.save(nuevoUsuario);
+            // Crear un nuevo objeto Usuarios con la información proporcionada
+            Usuarios nuevoUsuario = new Usuarios();
+            nuevoUsuario.setNombre(nombre);
+            nuevoUsuario.setApellidos(apellidos);
+            nuevoUsuario.setEmail(correo);
+            nuevoUsuario.setPassword(hashPassword); 
+            
+            sesion.save(nuevoUsuario);
             tx.commit();
             
             System.out.println("Usuario registrado exitosamente.");
             
-        } catch (Exception e) {
-            e.printStackTrace();
+            sesion.close();
+        } catch (HibernateException e) {
             System.out.println("Error al registrar el usuario en la base de datos.");
         }
     }//GEN-LAST:event_botonRegistroActionPerformed

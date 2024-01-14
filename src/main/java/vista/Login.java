@@ -6,6 +6,13 @@ package vista;
 
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
+import controlador.HibernateUtil;
+import modelo.Usuarios;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 
@@ -159,11 +166,11 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(labelPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGap(18, 18, 18)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelOlvidada)
-                            .addComponent(checkBoxCuenta))
-                        .addGap(26, 26, 26)
+                            .addComponent(checkBoxCuenta)
+                            .addComponent(labelOlvidada))
+                        .addGap(18, 18, 18)
                         .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -187,7 +194,41 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
+        // Recuperar la información de los campos de texto
+        String correo = textFieldCorreo.getText();
+        char[] passwordChars = passwordField.getPassword();
 
+        // Convertir la contraseña a String para utilizarla
+        String password = new String(passwordChars);
+
+        // Validar que los campos no estén vacíos
+        if (correo.isEmpty() || password.isEmpty()) {
+            System.out.println("Por favor, complete todos los campos.");
+            return;
+        }
+
+        try {
+            // Realizar la verificación de credenciales en la base de datos
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session sesion = sessionFactory.openSession();
+
+            Query query = sesion.createQuery("FROM Usuarios WHERE email = :correo");
+            query.setParameter("correo", correo);
+            
+            Usuarios usuario = (Usuarios) query.uniqueResult();
+
+            // Verificar si se encontró un usuario con el correo proporcionado
+            if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {
+                System.out.println("Inicio de sesión exitoso");
+                
+            } else {
+                System.out.println("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
+            }
+            
+            sesion.close();
+        } catch (HibernateException e) {
+            System.out.println("Error al verificar las credenciales en la base de datos.");
+        }
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
