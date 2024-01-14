@@ -7,10 +7,18 @@ package vista;
 import controlador.Escalar;
 import controlador.EmailUtil;
 import com.formdev.flatlaf.FlatLightLaf;
+import controlador.HibernateUtil;
+import java.security.SecureRandom;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import modelo.Usuarios;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -30,6 +38,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         //Redondear el botón del Login
         botonRecuperar.putClientProperty( "JButton.buttonType", "roundRect" );
         
+        // Llamar al método para escalar el icono y que se vea bien
         escalar.escalarLabel(labelIcono,"/img/logo.png");
     }
 
@@ -137,29 +146,89 @@ public class RecuperarPassword extends javax.swing.JFrame {
     private void botonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRecuperarActionPerformed
         // TODO add your handling code here:
         final String fromEmail = "davidjerte10@gmail.com";
-            final String password = "xvfjgmjqtzmxmyjk";
-            final String toEmail = textFieldCorreo.getText();
-            
-            System.out.println("SSLEmail Start");
-            Properties props = new Properties();
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.port", "587");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.user", fromEmail);
-            props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-            
-            Authenticator auth = new Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication(){
-                    return new PasswordAuthentication(fromEmail, password);
-                }
-            };
-            
-            Session session = Session.getDefaultInstance(props, auth);
-            System.out.println("Sesion Creada");
-            EmailUtil.sendEmail(session, toEmail, "Prueba correo", "Bienvenido a David Gym");
-    }//GEN-LAST:event_botonRecuperarActionPerformed
+        final String password = "xvfjgmjqtzmxmyjk";
+        final String toEmail = textFieldCorreo.getText();
 
+        System.out.println("SSLEmail Start");
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.user", fromEmail);
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+
+        Session session = Session.getDefaultInstance(props, auth);
+        System.out.println("Sesión Creada");
+        
+        // Caracteres de la contraseña
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        // Longitud de la nueva contraseña
+        int longitudPassword = 4;
+        
+        // Crear un StringBuilder para construir la nueva contraseña
+        StringBuilder nuevaPassword = new StringBuilder(longitudPassword);
+        
+        // Crear un objeto SecureRandom para generar la contraseña de forma segura
+        SecureRandom random = new SecureRandom();
+        
+        // Generar cada caracter de la nueva contraseña de forma aleatoria
+        for (int i = 0; i < longitudPassword; i++) {
+            int indice = random.nextInt(caracteres.length());
+            nuevaPassword.append(caracteres.charAt(indice));
+        }
+
+        // Envío del correo
+        EmailUtil.sendEmail(session, toEmail, "Recuperación de contraseña", "Su nueva contraseña es " + nuevaPassword);
+        
+        // Convertir el StringBuilder en String para poder pasarlo al método
+        String nuevaPasswordString = nuevaPassword.toString();
+
+        // Llamada al Método que actualiza la contraseña en la base de datos
+        actualizarContraseña(toEmail, nuevaPasswordString);
+
+        System.out.println("Correo enviado y contraseña actualizada con éxito.");
+    }//GEN-LAST:event_botonRecuperarActionPerformed
+     
+    private void actualizarContraseña(String correo, String nuevaContraseña) {
+        try {
+            // Abrir la sesión de Hibernate
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            org.hibernate.Session sesion = sessionFactory.openSession();
+            
+            Transaction tx = sesion.beginTransaction();
+
+            Query query = sesion.createQuery("FROM Usuarios WHERE email = :correo");
+            query.setParameter("correo", correo);
+
+            Usuarios usuario = (Usuarios) query.uniqueResult();
+
+            if (usuario != null) {
+                // Actualizar la contraseña del usuario
+                usuario.setPassword(BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt()));
+
+                // Guardar los cambios en la base de datos
+                sesion.save(usuario);
+                tx.commit();
+
+                System.out.println("Contraseña actualizada en la base de datos.");
+            } else {
+                System.out.println("Usuario no encontrado en la base de datos.");
+            }
+
+            sesion.close();
+        } catch (HibernateException e) {
+            System.out.println("Error al actualizar la contraseña en la base de datos.");
+        }
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRecuperar;
     private javax.swing.JLabel labelCorreo;
