@@ -11,9 +11,9 @@ import modelo.Usuarios;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
 
-import com.password4j.Hash;
-import com.password4j.Password;
+
 
 
 /**
@@ -235,14 +235,14 @@ public class Registro extends javax.swing.JFrame {
         }
         
         // Hashear la contraseña utilizando PBKDF2
-        Hash hashPassword = Password.hash(password).withPBKDF2();
+        String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         // Crear un nuevo objeto Usuarios con la información proporcionada
         Usuarios nuevoUsuario = new Usuarios();
         nuevoUsuario.setNombre(nombre);
         nuevoUsuario.setApellidos(apellidos);
         nuevoUsuario.setEmail(correo);
-        nuevoUsuario.setPassword(hashPassword.getResult()); // Guardar el hash en lugar de la contraseña en texto plano
+        nuevoUsuario.setPassword(hashPassword); // Guardar el hash en lugar de la contraseña en texto plano
 
         // Realizar la inserción en la base de datos
         try {

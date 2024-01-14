@@ -6,14 +6,7 @@ package vista;
 
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
-import com.password4j.HashChecker;
-import com.password4j.Password;
-import controlador.HibernateUtil;
-import modelo.Usuarios;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 
 
 /**
