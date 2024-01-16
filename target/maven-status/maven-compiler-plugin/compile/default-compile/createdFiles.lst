@@ -17,6 +17,7 @@ vista\Login$1.class
 vista\Login.class
 modelo\Horarios.class
 vista\Registro$2.class
+vista\VistaPrincipal.class
 vista\RecuperarPassword$1.class
 vista\RecuperarPassword.class
 controlador\Escalar.class

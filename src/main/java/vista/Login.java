@@ -60,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -221,6 +222,10 @@ public class Login extends javax.swing.JFrame {
             // Verificar si se encontró un usuario con el correo proporcionado
             if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {
                 System.out.println("Inicio de sesión exitoso");
+                
+                VistaPrincipal vistaPrincipal = new VistaPrincipal();
+                vistaPrincipal.setVisible(true);
+                this.setVisible(false);
                 
             } else {
                 System.out.println("Credenciales incorrectas. Por favor, inténtelo de nuevo.");

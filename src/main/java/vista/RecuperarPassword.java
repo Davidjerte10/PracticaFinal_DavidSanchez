@@ -61,6 +61,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Recuperar");
         setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));

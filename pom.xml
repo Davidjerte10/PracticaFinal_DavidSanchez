@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE190</version>
+            <version>RELEASE200</version>
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
