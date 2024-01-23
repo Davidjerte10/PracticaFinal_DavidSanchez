@@ -32,7 +32,7 @@ public class Login extends javax.swing.JFrame {
         
         
         // Llamar al método para escalar el icono y que se vea bien
-        escalar.escalarLabel(labelIcono,"/img/logo.png");
+        escalar.escalarLabel(labelIcono,"/img/icon.jpg");
         
         //Redondeos
         botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );    
@@ -63,7 +63,6 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setMinimumSize(new java.awt.Dimension(800, 550));
-        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -96,7 +95,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.jpg"))); // NOI18N
         labelIcono.setText("jLabel1");
 
         labelOlvidada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
