@@ -3,6 +3,7 @@ modelo\Monitores.class
 controlador\EmailUtil.class
 modelo\Reservas.class
 vista\Login$2.class
+controlador\UsuariosController.class
 vista\RecuperarPassword$2.class
 modelo\Actividades.class
 vista\Registro.class

@@ -7,6 +7,7 @@ package vista;
 import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.HibernateUtil;
+import controlador.UsuariosController;
 import modelo.Usuarios;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,15 +27,17 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
-        initComponents();
-        
+        initComponents();        
         Escalar escalar = new Escalar();
+        
         
         // Llamar al método para escalar el icono y que se vea bien
         escalar.escalarLabel(labelIcono,"/img/logo.png");
         
-        //Redondear el botón del Login
-        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );              
+        //Redondeos
+        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );    
+        textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
+        passwordField.putClientProperty("FlatLaf.style", "arc: 20");
     }
 
     /**
@@ -209,33 +212,22 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Por favor, complete todos los campos.");
             return;
         }
+        
+        UsuariosController usuariosController = new UsuariosController();
 
-        try {
-            // Establecer conexión con la base de datos
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session sesion = sessionFactory.openSession();
+        Usuarios login = usuariosController.login(correo);
+        // Verificar si se encontró un usuario con el correo proporcionado
+        if (login != null && BCrypt.checkpw(password, login.getPassword())) {
+            System.out.println("Inicio de sesión exitoso");
 
-            Query q = sesion.createQuery("FROM Usuarios WHERE email = :correo");
-            q.setParameter("correo", correo);
-            
-            Usuarios usuario = (Usuarios) q.uniqueResult();
+            VistaPrincipal vistaPrincipal = new VistaPrincipal();
+            vistaPrincipal.setVisible(true);
+            this.setVisible(false);
 
-            // Verificar si se encontró un usuario con el correo proporcionado
-            if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {
-                System.out.println("Inicio de sesión exitoso");
-                
-                VistaPrincipal vistaPrincipal = new VistaPrincipal();
-                vistaPrincipal.setVisible(true);
-                this.setVisible(false);
-                
-            } else {
-                System.out.println("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
-            }
-            
-            sesion.close();
-        } catch (HibernateException e) {
-            System.out.println("Error al verificar las credenciales en la base de datos.");
+        } else {
+            System.out.println("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
         }
+            
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
