@@ -8,9 +8,11 @@ vista\RecuperarPassword$2.class
 modelo\Actividades.class
 vista\Registro.class
 vista\Login$3.class
+vista\Registro$6.class
 vista\Registro$1.class
 modelo\Usuarios.class
 vista\Login$5.class
+vista\RecuperarPassword$4.class
 vista\Registro$4.class
 vista\Login$6.class
 vista\RecuperarPassword$3.class
@@ -21,7 +23,6 @@ vista\Registro$2.class
 vista\VistaPrincipal.class
 vista\RecuperarPassword$1.class
 vista\RecuperarPassword.class
-controlador\Escalar.class
 vista\Registro$5.class
 controlador\HibernateUtil.class
 vista\Login$4.class

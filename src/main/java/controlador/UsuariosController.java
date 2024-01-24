@@ -7,17 +7,17 @@ package controlador;
 import modelo.Usuarios;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
  *
- * @author Alumno
+ * @author David Sánchez Ávila
  */
 public class UsuariosController {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     
     public Usuarios login(String correo) {
-        // Establecer conexión con la base de datos
         Session sesion = sessionFactory.openSession();
 
         Query q = sesion.createQuery("FROM Usuarios WHERE email = :correo");
@@ -26,5 +26,20 @@ public class UsuariosController {
         Usuarios usuario = (Usuarios) q.uniqueResult();
         
         return usuario;
+    }
+    
+    public void registrarUsuario(String nombre, String apellidos, String correo, String password) {           
+        Session sesion = sessionFactory.openSession();
+        Transaction tx = sesion.beginTransaction();
+
+        Usuarios nuevoUsuario = new Usuarios();
+        
+        nuevoUsuario.setNombre(nombre);
+        nuevoUsuario.setApellidos(apellidos);
+        nuevoUsuario.setEmail(correo);
+        nuevoUsuario.setPassword(password); 
+
+        sesion.save(nuevoUsuario);
+        tx.commit();
     }
 }

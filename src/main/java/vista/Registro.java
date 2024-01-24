@@ -4,14 +4,8 @@
  */
 package vista;
 
-import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
-import controlador.HibernateUtil;
-import modelo.Usuarios;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import controlador.UsuariosController;
 import org.mindrot.jbcrypt.BCrypt;
 
 
@@ -19,7 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
- * @author David Sánchez
+ * @author David Sánchez Ávila
  */
 public class Registro extends javax.swing.JFrame {
 
@@ -29,14 +23,14 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
         FlatLightLaf.setup();
-        
-        Escalar escalar = new Escalar();
-        
-        // Llamar al método para escalar el icono y que se vea bien
-        escalar.escalarLabel(labelIcono,"/img/logo.png");
-        
-        //Redondear el botón del Login
-        botonRegistro.putClientProperty( "JButton.buttonType", "roundRect" );    
+                    
+        //Redondeos
+        botonRegistro.putClientProperty( "FlatLaf.style", "arc: 25" );
+        textFieldNombre.putClientProperty("FlatLaf.style", "arc: 20");
+        textFieldApellidos.putClientProperty("FlatLaf.style", "arc: 20");
+        textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
+        passwordField.putClientProperty("FlatLaf.style", "arc: 20");
+        panelVolver.putClientProperty("FlatLaf.style", "arc:50");
     }
 
     /**
@@ -61,6 +55,8 @@ public class Registro extends javax.swing.JFrame {
         labelCorreo = new javax.swing.JLabel();
         checkBoxTerminos = new javax.swing.JCheckBox();
         passwordField = new javax.swing.JPasswordField();
+        panelVolver = new javax.swing.JPanel();
+        labelVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
@@ -75,7 +71,7 @@ public class Registro extends javax.swing.JFrame {
         labelRegistro.setText("REGISTRO");
 
         labelPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelPassword.setForeground(new java.awt.Color(181, 2, 2));
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Contraseña");
 
         textFieldNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +81,7 @@ public class Registro extends javax.swing.JFrame {
         });
 
         labelNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelNombre.setForeground(new java.awt.Color(181, 2, 2));
+        labelNombre.setForeground(new java.awt.Color(255, 255, 255));
         labelNombre.setText("Nombre");
 
         botonRegistro.setBackground(new java.awt.Color(181, 2, 2));
@@ -98,7 +94,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
         labelIcono.setText("jLabel1");
 
         textFieldApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +104,7 @@ public class Registro extends javax.swing.JFrame {
         });
 
         labelApellidos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelApellidos.setForeground(new java.awt.Color(181, 2, 2));
+        labelApellidos.setForeground(new java.awt.Color(255, 255, 255));
         labelApellidos.setText("Apellidos");
 
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +114,7 @@ public class Registro extends javax.swing.JFrame {
         });
 
         labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
+        labelCorreo.setForeground(new java.awt.Color(255, 255, 255));
         labelCorreo.setText("Correo");
 
         checkBoxTerminos.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -130,34 +126,72 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelVolverMouseClicked(evt);
+            }
+        });
+
+        labelVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/volver.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelVolverLayout = new javax.swing.GroupLayout(panelVolver);
+        panelVolver.setLayout(panelVolverLayout);
+        panelVolverLayout.setHorizontalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelVolverLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        panelVolverLayout.setVerticalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelVolverLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(labelRegistro))
-            .addGroup(panelFondoLayout.createSequentialGroup()
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addComponent(labelNombre))
+                        .addComponent(labelRegistro))
                     .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelPassword)
-                            .addComponent(botonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(textFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(labelApellidos)
-                            .addComponent(textFieldCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(labelCorreo)
-                            .addComponent(checkBoxTerminos)
-                            .addComponent(passwordField))))
-                .addGap(70, 70, 70)
-                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(labelNombre))
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelPassword)
+                                    .addComponent(botonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                    .addComponent(textFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                    .addComponent(labelApellidos)
+                                    .addComponent(textFieldCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                    .addComponent(labelCorreo)
+                                    .addComponent(checkBoxTerminos)
+                                    .addComponent(passwordField))))
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFondoLayout.createSequentialGroup()
+                                .addGap(217, 217, 217)
+                                .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(91, 91, 91))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +220,15 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(checkBoxTerminos)))
-                .addGap(27, 27, 27)
-                .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,30 +281,19 @@ public class Registro extends javax.swing.JFrame {
         // Hashear la contraseña utilizando BCrypt
         String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        try {
-            // Establecer conexión
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        UsuariosController usuariosController = new UsuariosController();
+        
+        usuariosController.registrarUsuario(nombre, apellidos, correo, hashPassword);
             
-            Session sesion = sessionFactory.openSession();
-            Transaction tx = sesion.beginTransaction();
+        System.out.println("Usuario insertado correctamente");
             
-            // Crear un nuevo objeto Usuarios con la información proporcionada
-            Usuarios nuevoUsuario = new Usuarios();
-            nuevoUsuario.setNombre(nombre);
-            nuevoUsuario.setApellidos(apellidos);
-            nuevoUsuario.setEmail(correo);
-            nuevoUsuario.setPassword(hashPassword); 
-            
-            sesion.save(nuevoUsuario);
-            tx.commit();
-            
-            System.out.println("Usuario registrado exitosamente.");
-            
-            sesion.close();
-        } catch (HibernateException e) {
-            System.out.println("Error al registrar el usuario en la base de datos.");
-        }
     }//GEN-LAST:event_botonRegistroActionPerformed
+
+    private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panelVolverMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegistro;
@@ -275,7 +304,9 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRegistro;
+    private javax.swing.JLabel labelVolver;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JPanel panelVolver;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField textFieldApellidos;
     private javax.swing.JTextField textFieldCorreo;

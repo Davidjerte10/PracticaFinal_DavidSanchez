@@ -4,22 +4,16 @@
  */
 package vista;
 
-import controlador.Escalar;
 import com.formdev.flatlaf.FlatLightLaf;
-import controlador.HibernateUtil;
 import controlador.UsuariosController;
 import modelo.Usuarios;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.mindrot.jbcrypt.BCrypt;
 
 
 
 /**
  *
- * @author David Sánchez
+ * @author David Sánchez Ávila
  */
 public class Login extends javax.swing.JFrame {
 
@@ -28,16 +22,12 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();        
-        Escalar escalar = new Escalar();
-        
-        
-        // Llamar al método para escalar el icono y que se vea bien
-        escalar.escalarLabel(labelIcono,"/img/icon.jpg");
-        
+             
         //Redondeos
-        botonLogin.putClientProperty( "JButton.buttonType", "roundRect" );    
+        botonLogin.putClientProperty( "FlatLaf.style", "arc: 25" );    
         textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
         passwordField.putClientProperty("FlatLaf.style", "arc: 20");
+        botonRegistro.putClientProperty( "FlatLaf.style", "arc: 25" );
     }
 
     /**
@@ -57,12 +47,14 @@ public class Login extends javax.swing.JFrame {
         botonLogin = new javax.swing.JButton();
         labelIcono = new javax.swing.JLabel();
         labelOlvidada = new javax.swing.JLabel();
-        checkBoxCuenta = new javax.swing.JCheckBox();
         passwordField = new javax.swing.JPasswordField();
+        jSeparator1 = new javax.swing.JSeparator();
+        botonRegistro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -72,7 +64,7 @@ public class Login extends javax.swing.JFrame {
         labelLogin.setText("BIENVENIDO");
 
         labelPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelPassword.setForeground(new java.awt.Color(181, 2, 2));
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Contraseña");
 
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +74,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
+        labelCorreo.setForeground(new java.awt.Color(255, 255, 255));
         labelCorreo.setText("Correo");
 
         botonLogin.setBackground(new java.awt.Color(181, 2, 2));
@@ -95,7 +87,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.jpg"))); // NOI18N
+        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
         labelIcono.setText("jLabel1");
 
         labelOlvidada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -107,18 +99,23 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        checkBoxCuenta.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        checkBoxCuenta.setForeground(new java.awt.Color(181, 2, 2));
-        checkBoxCuenta.setText("No tengo cuenta");
-        checkBoxCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxCuentaActionPerformed(evt);
-            }
-        });
-
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jSeparator1.setMinimumSize(new java.awt.Dimension(80, 10));
+
+        botonRegistro.setBackground(new java.awt.Color(181, 2, 2));
+        botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistro.setText("No tengo cuenta");
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistroActionPerformed(evt);
             }
         });
 
@@ -135,22 +132,23 @@ public class Login extends javax.swing.JFrame {
                         .addGap(78, 78, 78)
                         .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(labelPassword))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(labelCorreo))
                     .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(80, 80, 80)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordField)
-                            .addGroup(panelFondoLayout.createSequentialGroup()
-                                .addComponent(checkBoxCuenta)
-                                .addGap(47, 47, 47)
-                                .addComponent(labelOlvidada)))))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                            .addComponent(botonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)))
+                    .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPassword)
+                            .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(passwordField)
+                                .addGroup(panelFondoLayout.createSequentialGroup()
+                                    .addGap(148, 148, 148)
+                                    .addComponent(labelOlvidada))))))
                 .addGap(70, 70, 70)
                 .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -162,21 +160,26 @@ public class Login extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))
+                    .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(labelCorreo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addGap(26, 26, 26)
                         .addComponent(labelPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(checkBoxCuenta)
-                            .addComponent(labelOlvidada))
-                        .addGap(18, 18, 18)
-                        .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelOlvidada)
+                        .addGap(26, 26, 26)
+                        .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,9 +217,9 @@ public class Login extends javax.swing.JFrame {
         
         UsuariosController usuariosController = new UsuariosController();
 
-        Usuarios login = usuariosController.login(correo);
+        Usuarios usuario = usuariosController.login(correo);
         // Verificar si se encontró un usuario con el correo proporcionado
-        if (login != null && BCrypt.checkpw(password, login.getPassword())) {
+        if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {
             System.out.println("Inicio de sesión exitoso");
 
             VistaPrincipal vistaPrincipal = new VistaPrincipal();
@@ -229,20 +232,22 @@ public class Login extends javax.swing.JFrame {
             
     }//GEN-LAST:event_botonLoginActionPerformed
 
-    private void checkBoxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCuentaActionPerformed
-        Registro registro = new Registro();
-        registro.setVisible(true);
-        
-    }//GEN-LAST:event_checkBoxCuentaActionPerformed
-
     private void labelOlvidadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidadaMouseClicked
         RecuperarPassword recuperar = new RecuperarPassword();
         recuperar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelOlvidadaMouseClicked
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
+        // TODO add your handling code here:
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +286,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonLogin;
-    private javax.swing.JCheckBox checkBoxCuenta;
+    private javax.swing.JButton botonRegistro;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelIcono;
     private javax.swing.JLabel labelLogin;

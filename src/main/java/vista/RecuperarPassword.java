@@ -4,7 +4,6 @@
  */
 package vista;
 
-import controlador.Escalar;
 import controlador.EmailUtil;
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.HibernateUtil;
@@ -22,7 +21,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
- * @author David Sánchez
+ * @author David Sánchez Ávila
  */
 public class RecuperarPassword extends javax.swing.JFrame {
 
@@ -32,14 +31,11 @@ public class RecuperarPassword extends javax.swing.JFrame {
     public RecuperarPassword() {
         initComponents();
         FlatLightLaf.setup();
-        
-        Escalar escalar = new Escalar();
-        
-        // Llamar al método para escalar el icono y que se vea bien
-        escalar.escalarLabel(labelIcono,"/img/logo.png");
-        
-        //Redondear el botón del Login
-        botonRecuperar.putClientProperty( "JButton.buttonType", "roundRect" );      
+                    
+        //Redondeos
+        textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
+        botonRecuperar.putClientProperty("FlatLaf.style", "arc: 20"); 
+        panelVolver.putClientProperty("FlatLaf.style", "arc:50");
     }
 
     /**
@@ -57,6 +53,8 @@ public class RecuperarPassword extends javax.swing.JFrame {
         labelCorreo = new javax.swing.JLabel();
         botonRecuperar = new javax.swing.JButton();
         labelIcono = new javax.swing.JLabel();
+        panelVolver = new javax.swing.JPanel();
+        labelVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Recuperar");
@@ -77,7 +75,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         });
 
         labelCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        labelCorreo.setForeground(new java.awt.Color(181, 2, 2));
+        labelCorreo.setForeground(new java.awt.Color(255, 255, 255));
         labelCorreo.setText("Correo");
 
         botonRecuperar.setBackground(new java.awt.Color(181, 2, 2));
@@ -90,8 +88,38 @@ public class RecuperarPassword extends javax.swing.JFrame {
             }
         });
 
-        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
         labelIcono.setText("jLabel1");
+
+        panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelVolverMouseClicked(evt);
+            }
+        });
+
+        labelVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/volver.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelVolverLayout = new javax.swing.GroupLayout(panelVolver);
+        panelVolver.setLayout(panelVolverLayout);
+        panelVolverLayout.setHorizontalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelVolverLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        panelVolverLayout.setVerticalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelVolverLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -107,7 +135,12 @@ public class RecuperarPassword extends javax.swing.JFrame {
                             .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(72, 72, 72)
-                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(91, 91, 91))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +156,10 @@ public class RecuperarPassword extends javax.swing.JFrame {
                         .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(botonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,6 +234,12 @@ public class RecuperarPassword extends javax.swing.JFrame {
 
         System.out.println("Correo enviado y contraseña actualizada con éxito.");
     }//GEN-LAST:event_botonRecuperarActionPerformed
+
+    private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panelVolverMouseClicked
      
     private void actualizarPassword(String correo, String nuevaPassword) {
         try {
@@ -236,7 +278,9 @@ public class RecuperarPassword extends javax.swing.JFrame {
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelIcono;
     private javax.swing.JLabel labelRecuperar;
+    private javax.swing.JLabel labelVolver;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JPanel panelVolver;
     private javax.swing.JTextField textFieldCorreo;
     // End of variables declaration//GEN-END:variables
 }
