@@ -62,7 +62,6 @@ public class Registro extends javax.swing.JFrame {
         setTitle("Registro");
         setMinimumSize(new java.awt.Dimension(800, 550));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -89,6 +88,7 @@ public class Registro extends javax.swing.JFrame {
         botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistro.setText("REGISTRATE !");
+        botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistroActionPerformed(evt);
@@ -121,6 +121,7 @@ public class Registro extends javax.swing.JFrame {
         checkBoxTerminos.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         checkBoxTerminos.setForeground(new java.awt.Color(181, 2, 2));
         checkBoxTerminos.setText("Acepto los términos y condiciones");
+        checkBoxTerminos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkBoxTerminos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkBoxTerminosActionPerformed(evt);
@@ -128,6 +129,7 @@ public class Registro extends javax.swing.JFrame {
         });
 
         panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelVolverMouseClicked(evt);
@@ -185,19 +187,19 @@ public class Registro extends javax.swing.JFrame {
                                     .addComponent(labelCorreo)
                                     .addComponent(checkBoxTerminos)
                                     .addComponent(passwordField))))
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFondoLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelFondoLayout.createSequentialGroup()
-                                .addGap(217, 217, 217)
-                                .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(70, 70, 70)
+                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(91, 91, 91))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(14, 14, 14)
+                .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelRegistro)
                 .addGap(16, 16, 16)
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,15 +223,9 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(checkBoxTerminos)))
-                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118))))
+                .addGap(18, 18, 18)
+                .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -54,7 +54,6 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setMinimumSize(new java.awt.Dimension(800, 550));
-        setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -67,6 +66,7 @@ public class Login extends javax.swing.JFrame {
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Contraseña");
 
+        textFieldCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCorreoActionPerformed(evt);
@@ -81,6 +81,7 @@ public class Login extends javax.swing.JFrame {
         botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(255, 255, 255));
         botonLogin.setText("Login");
+        botonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLoginActionPerformed(evt);
@@ -93,12 +94,14 @@ public class Login extends javax.swing.JFrame {
         labelOlvidada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         labelOlvidada.setForeground(new java.awt.Color(181, 2, 2));
         labelOlvidada.setText("Contraseña olvidada?");
+        labelOlvidada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelOlvidada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelOlvidadaMouseClicked(evt);
             }
         });
 
+        passwordField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
@@ -113,6 +116,7 @@ public class Login extends javax.swing.JFrame {
         botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistro.setText("No tengo cuenta");
+        botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistroActionPerformed(evt);
