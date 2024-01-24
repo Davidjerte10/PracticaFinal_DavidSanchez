@@ -61,6 +61,7 @@ public class Registro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
         setMinimumSize(new java.awt.Dimension(800, 550));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 550));
         setResizable(false);
 
