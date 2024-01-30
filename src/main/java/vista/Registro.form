@@ -55,39 +55,40 @@
                           <EmptySpace min="78" pref="78" max="-2" attributes="0"/>
                           <Component id="labelRegistro" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                  <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                  <Component id="textFieldNombre" min="-2" pref="249" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                                      <Component id="botonRegistro" alignment="0" pref="249" max="32767" attributes="0"/>
-                                      <Component id="textFieldApellidos" alignment="0" pref="249" max="32767" attributes="0"/>
-                                      <Component id="labelApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldCorreo" alignment="0" pref="249" max="32767" attributes="0"/>
-                                      <Component id="labelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkBoxTerminos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="labelIcono" min="-2" pref="310" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="panelVolver" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="textFieldNombre" min="-2" pref="249" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonRegistro" alignment="0" pref="249" max="32767" attributes="0"/>
+                              <Component id="textFieldApellidos" alignment="0" pref="249" max="32767" attributes="0"/>
+                              <Component id="labelApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreo" alignment="0" pref="249" max="32767" attributes="0"/>
+                              <Component id="labelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkBoxTerminos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="116" max="32767" attributes="0"/>
+                  <Component id="labelIcono" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,11 +99,9 @@
                   <Component id="panelVolver" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelRegistro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelIcono" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="textFieldNombre" min="-2" max="-2" attributes="0"/>
@@ -120,6 +119,10 @@
                           <Component id="passwordField" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="checkBoxTerminos" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <Component id="labelIcono" min="-2" pref="260" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>

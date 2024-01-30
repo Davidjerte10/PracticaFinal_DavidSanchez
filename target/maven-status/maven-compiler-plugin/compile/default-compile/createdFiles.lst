@@ -5,6 +5,7 @@ modelo\Reservas.class
 vista\Login$2.class
 controlador\UsuariosController.class
 vista\RecuperarPassword$2.class
+vista\VistaPrincipal$2.class
 modelo\Actividades.class
 vista\Registro.class
 vista\Login$3.class
@@ -15,10 +16,12 @@ vista\VistaPrincipal$1.class
 vista\Login$5.class
 vista\RecuperarPassword$4.class
 vista\Registro$4.class
+vista\VistaPrincipal$3.class
 vista\Login$6.class
 vista\RecuperarPassword$3.class
 vista\Login$1.class
 vista\Login.class
+controlador\PanelRound.class
 modelo\Horarios.class
 vista\Registro$2.class
 vista\VistaPrincipal.class
