@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import java.util.List;
 import modelo.Usuarios;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,5 +42,14 @@ public class UsuariosController {
 
         sesion.save(nuevoUsuario);
         tx.commit();
+    }
+
+    public List<Usuarios> obtenerUsuarios() {
+        Session sesion = sessionFactory.openSession();
+
+        Query q = sesion.createQuery("FROM Usuarios", Usuarios.class);
+        List<Usuarios> listaUsuarios = q.getResultList();
+
+        return listaUsuarios;
     }
 }

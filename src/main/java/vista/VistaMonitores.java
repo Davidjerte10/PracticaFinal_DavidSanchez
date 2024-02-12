@@ -5,42 +5,43 @@
 package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import controlador.UsuariosController;
+import controlador.MonitoresController;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import modelo.Usuarios;
+import modelo.Monitores;
 
 /**
  *
  * @author David Sanchez Avila
  */
-public class VistaPrincipal extends javax.swing.JFrame {
+public class VistaMonitores extends javax.swing.JFrame {
 
-    private UsuariosController usuariosController;
+    private MonitoresController monitoresController;
     
     /**
      * Creates new form VistaPrincipal
      */
-    public VistaPrincipal() {
+    public VistaMonitores() {
         initComponents();
         FlatLightLaf.setup();
-        usuariosController = new UsuariosController();
-        mostrarUsuariosEnTabla();
+        monitoresController = new MonitoresController();
+        mostrarMonitores();
     }
        
     // Método para mostrar los usuarios en la tabla
-    private void mostrarUsuariosEnTabla() {
+    private void mostrarMonitores() {
         // Obtener la lista de usuarios
-        List<Usuarios> listaUsuarios = usuariosController.obtenerUsuarios();
+        List<Monitores> listaMonitores = monitoresController.obtenerMonitores();
 
         // Crear un modelo de tabla
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
+        model.addColumn("Actividad");
 
         // Agregar los usuarios al modelo de tabla
-        for (Usuarios usuario : listaUsuarios) {
-            model.addRow(new Object[]{usuario.getNombre(), usuario.getApellidos()});
+        for (Monitores monitor : listaMonitores) {
+            model.addRow(new Object[]{monitor.getNombre(), monitor.getApellidos(), monitor.getActividad()});
         }
 
         // Establecer el modelo en la tabla
@@ -58,11 +59,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         panelFondo = new javax.swing.JPanel();
         panelLateral = new javax.swing.JPanel();
-        labelFotoPerfil = new javax.swing.JLabel();
-        botonPrincipal = new javax.swing.JButton();
-        botonActividades = new javax.swing.JButton();
-        botonMonitores = new javax.swing.JButton();
-        botonPlan = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         labelImagen = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         panelFrame = new controlador.PanelRound();
@@ -72,7 +73,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VistaPrincipal");
-        setMaximumSize(new java.awt.Dimension(900, 650));
         setMinimumSize(new java.awt.Dimension(900, 650));
         setResizable(false);
 
@@ -81,64 +81,64 @@ public class VistaPrincipal extends javax.swing.JFrame {
         panelLateral.setBackground(new java.awt.Color(47, 47, 47));
         panelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelFotoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PersonCircle.png"))); // NOI18N
-        panelLateral.add(labelFotoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 54, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PersonCircle.png"))); // NOI18N
+        panelLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 54, -1, -1));
 
-        botonPrincipal.setBackground(new java.awt.Color(47, 47, 47));
-        botonPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        botonPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPrincipal.png"))); // NOI18N
-        botonPrincipal.setText("Principal");
-        botonPrincipal.setBorderPainted(false);
-        botonPrincipal.setIconTextGap(30);
-        botonPrincipal.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(47, 47, 47));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPrincipal.png"))); // NOI18N
+        jButton1.setText("Principal");
+        jButton1.setBorderPainted(false);
+        jButton1.setIconTextGap(30);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonPrincipalActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        panelLateral.add(botonPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 137, -1));
+        panelLateral.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 137, -1));
 
-        botonActividades.setBackground(new java.awt.Color(47, 47, 47));
-        botonActividades.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonActividades.setForeground(new java.awt.Color(255, 255, 255));
-        botonActividades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconActividades.png"))); // NOI18N
-        botonActividades.setText("Actividades");
-        botonActividades.setBorderPainted(false);
-        botonActividades.setIconTextGap(15);
-        botonActividades.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(47, 47, 47));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconActividades.png"))); // NOI18N
+        jButton2.setText("Actividades");
+        jButton2.setBorderPainted(false);
+        jButton2.setIconTextGap(15);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActividadesActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        panelLateral.add(botonActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 137, -1));
+        panelLateral.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 137, -1));
 
-        botonMonitores.setBackground(new java.awt.Color(47, 47, 47));
-        botonMonitores.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonMonitores.setForeground(new java.awt.Color(255, 255, 255));
-        botonMonitores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconMonitores.png"))); // NOI18N
-        botonMonitores.setText("Monitores");
-        botonMonitores.setBorderPainted(false);
-        botonMonitores.setIconTextGap(22);
-        botonMonitores.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setBackground(new java.awt.Color(47, 47, 47));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconMonitores.png"))); // NOI18N
+        jButton3.setText("Monitores");
+        jButton3.setBorderPainted(false);
+        jButton3.setIconTextGap(22);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonMonitoresActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        panelLateral.add(botonMonitores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 137, -1));
+        panelLateral.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 137, -1));
 
-        botonPlan.setBackground(new java.awt.Color(47, 47, 47));
-        botonPlan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonPlan.setForeground(new java.awt.Color(255, 255, 255));
-        botonPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPlan.png"))); // NOI18N
-        botonPlan.setText("Plan");
-        botonPlan.setBorderPainted(false);
-        botonPlan.setIconTextGap(53);
-        botonPlan.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(47, 47, 47));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPlan.png"))); // NOI18N
+        jButton5.setText("Plan");
+        jButton5.setBorderPainted(false);
+        jButton5.setIconTextGap(53);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonPlanActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
-        panelLateral.add(botonPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
+        panelLateral.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
 
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconSmall.png"))); // NOI18N
 
@@ -250,32 +250,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonMonitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMonitoresActionPerformed
-        // TODO add your handling code here:ç
-        VistaMonitores vistaMonitores = new VistaMonitores();
-        vistaMonitores.setVisible(true);
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VistaPrincipal vistaPrincipal = new VistaPrincipal();
+        vistaPrincipal.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_botonMonitoresActionPerformed
-
-    private void botonPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonPlanActionPerformed
-
-    private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonActividadesActionPerformed
-
-    private void botonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrincipalActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_botonPrincipalActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonActividades;
-    private javax.swing.JButton botonMonitores;
-    private javax.swing.JButton botonPlan;
-    private javax.swing.JButton botonPrincipal;
-    private javax.swing.JLabel labelFotoPerfil;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelImagen;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTitulo1;
