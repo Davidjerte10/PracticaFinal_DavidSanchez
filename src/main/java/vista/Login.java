@@ -13,7 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
- * @author David Sánchez Ávila
+ * @author David Sanchez Avila
  */
 public class Login extends javax.swing.JFrame {
 

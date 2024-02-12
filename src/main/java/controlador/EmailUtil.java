@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author Alumno
+ * @author David Sanchez Avila
  */
 public class EmailUtil {
     public static void sendEmail(Session session, String toEmail, String subject, String body) {

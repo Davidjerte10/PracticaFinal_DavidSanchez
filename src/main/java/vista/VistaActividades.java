@@ -5,40 +5,38 @@
 package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import controlador.MonitoresController;
+import controlador.ActividadesController;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import modelo.Monitores;
+import modelo.Actividades;
 
 /**
  *
  * @author David Sanchez Avila
  */
-public class VistaMonitores extends javax.swing.JFrame {
+public class VistaActividades extends javax.swing.JFrame {
 
-    private final MonitoresController monitoresController;
+    private final ActividadesController actividadesController;
     
     /**
      * Creates new form VistaPrincipal
      */
-    public VistaMonitores() {
+    public VistaActividades() {
         initComponents();
         FlatLightLaf.setup();
-        monitoresController = new MonitoresController();
-        mostrarMonitores();
+        actividadesController = new ActividadesController();
+        mostrarActividades();
     }
        
-    // Método para mostrar los monitores en la tabla
-    private void mostrarMonitores() {
-        List<Monitores> listaMonitores = monitoresController.obtenerMonitores();
+    // Método para mostrar las actividades en la tabla
+    private void mostrarActividades() {
+        List<Actividades> listaActividades = actividadesController.obtenerActividades();
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
-        model.addColumn("Apellidos");
-        model.addColumn("Actividad");
 
-        for (Monitores monitor : listaMonitores) {
-            model.addRow(new Object[]{monitor.getNombre(), monitor.getApellidos(), monitor.getActividad()});
+        for (Actividades actividad : listaActividades) {
+            model.addRow(new Object[]{actividad.getNombre()});
         }
 
         tabla.setModel(model);
@@ -172,21 +170,20 @@ public class VistaMonitores extends javax.swing.JFrame {
 
         labelTitulo1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         labelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
-        labelTitulo1.setText("LISTA MONITORES");
+        labelTitulo1.setText("ACTIVIDADES DISPONIBLES");
 
         javax.swing.GroupLayout panelFrameLayout = new javax.swing.GroupLayout(panelFrame);
         panelFrame.setLayout(panelFrameLayout);
         panelFrameLayout.setHorizontalGroup(
             panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFrameLayout.createSequentialGroup()
-                .addGroup(panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFrameLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFrameLayout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(labelTitulo1)))
+                .addGap(90, 90, 90)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitulo1)
+                .addGap(136, 136, 136))
         );
         panelFrameLayout.setVerticalGroup(
             panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +245,10 @@ public class VistaMonitores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonMonitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMonitoresActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:ç
+        VistaMonitores vistaMonitores = new VistaMonitores();
+        vistaMonitores.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonMonitoresActionPerformed
 
     private void botonPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlanActionPerformed
@@ -257,16 +257,13 @@ public class VistaMonitores extends javax.swing.JFrame {
 
     private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
         // TODO add your handling code here:
-        VistaActividades vistaActividades = new VistaActividades();
-        vistaActividades.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_botonActividadesActionPerformed
 
     private void botonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrincipalActionPerformed
         // TODO add your handling code here:
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
         vistaPrincipal.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);      
     }//GEN-LAST:event_botonPrincipalActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

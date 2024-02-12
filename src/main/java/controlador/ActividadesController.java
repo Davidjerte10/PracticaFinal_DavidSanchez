@@ -5,7 +5,7 @@
 package controlador;
 
 import java.util.List;
-import modelo.Monitores;
+import modelo.Actividades;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,16 +14,15 @@ import org.hibernate.query.Query;
  *
  * @author David Sanchez Avila
  */
-public class MonitoresController {
-    
+public class ActividadesController {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     
-    public List<Monitores> obtenerMonitores() {
+    public List<Actividades> obtenerActividades() {
         Session sesion = sessionFactory.openSession();
 
-        Query q = sesion.createQuery("FROM Monitores", Monitores.class);
-        List<Monitores> listaMonitores = q.getResultList();
+        Query q = sesion.createQuery("FROM Actividades", Actividades.class);
+        List<Actividades> listaActividades = q.getResultList();
 
-        return listaMonitores;
+        return listaActividades;
     }
 }

@@ -13,7 +13,7 @@ import org.hibernate.query.Query;
 
 /**
  *
- * @author David Sánchez Ávila
+ * @author David Sanchez Avila
  */
 public class UsuariosController {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

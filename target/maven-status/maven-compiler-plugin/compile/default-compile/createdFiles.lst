@@ -1,3 +1,4 @@
+vista\VistaActividades$1.class
 modelo\Monitores.class
 controlador\EmailUtil.class
 vista\VistaPrincipal$4.class
@@ -7,6 +8,7 @@ modelo\Actividades.class
 vista\Registro.class
 vista\Registro$1.class
 vista\VistaMonitores$4.class
+controlador\ActividadesController.class
 vista\VistaPrincipal$1.class
 vista\Login$5.class
 vista\RecuperarPassword$4.class
@@ -16,6 +18,7 @@ vista\RecuperarPassword$3.class
 vista\Login.class
 vista\Registro$2.class
 vista\VistaPrincipal.class
+vista\VistaActividades$2.class
 vista\VistaMonitores$3.class
 vista\Registro$5.class
 controlador\HibernateUtil.class
@@ -28,6 +31,7 @@ vista\VistaMonitores$2.class
 vista\Login$3.class
 vista\Registro$6.class
 vista\VistaMonitores.class
+vista\VistaActividades$3.class
 modelo\Usuarios.class
 vista\VistaPrincipal$3.class
 vista\Login$1.class
@@ -36,4 +40,6 @@ modelo\Horarios.class
 vista\VistaMonitores$1.class
 vista\RecuperarPassword$1.class
 vista\RecuperarPassword.class
+vista\VistaActividades.class
+vista\VistaActividades$4.class
 vista\Login$4.class

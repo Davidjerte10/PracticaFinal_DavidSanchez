@@ -21,7 +21,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
- * @author David Sánchez Ávila
+ * @author David Sanchez Avila
  */
 public class RecuperarPassword extends javax.swing.JFrame {
 

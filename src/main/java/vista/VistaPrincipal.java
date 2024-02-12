@@ -16,7 +16,7 @@ import modelo.Usuarios;
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
-    private UsuariosController usuariosController;
+    private final UsuariosController usuariosController;
     
     /**
      * Creates new form VistaPrincipal
@@ -25,25 +25,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
         initComponents();
         FlatLightLaf.setup();
         usuariosController = new UsuariosController();
-        mostrarUsuariosEnTabla();
+        mostrarUsuarios();
     }
        
     // Método para mostrar los usuarios en la tabla
-    private void mostrarUsuariosEnTabla() {
-        // Obtener la lista de usuarios
+    private void mostrarUsuarios() {
         List<Usuarios> listaUsuarios = usuariosController.obtenerUsuarios();
 
-        // Crear un modelo de tabla
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
 
-        // Agregar los usuarios al modelo de tabla
         for (Usuarios usuario : listaUsuarios) {
             model.addRow(new Object[]{usuario.getNombre(), usuario.getApellidos()});
         }
 
-        // Establecer el modelo en la tabla
         tabla.setModel(model);
     }
 
@@ -175,7 +171,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         scrollPane.setViewportView(tabla);
 
         labelTitulo1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        labelTitulo1.setForeground(new java.awt.Color(181, 2, 2));
+        labelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo1.setText("USUARIOS APUNTADOS");
 
         javax.swing.GroupLayout panelFrameLayout = new javax.swing.GroupLayout(panelFrame);
@@ -263,6 +259,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
         // TODO add your handling code here:
+        VistaActividades vistaActividades = new VistaActividades();
+        vistaActividades.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonActividadesActionPerformed
 
     private void botonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrincipalActionPerformed
