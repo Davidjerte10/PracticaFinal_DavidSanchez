@@ -23,7 +23,13 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
         FlatLightLaf.setup();
-                    
+         
+        // Placeholders
+        textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
+        passwordField.putClientProperty("JTextField.placeholderText", "Inserte su contraseña");
+        textFieldNombre.putClientProperty("JTextField.placeholderText", "Inserte su nombre");
+        textFieldApellidos.putClientProperty("JTextField.placeholderText", "Inserte sus apellidos");
+        
         //Redondeos
         botonRegistro.putClientProperty( "FlatLaf.style", "arc: 25" );
         textFieldNombre.putClientProperty("FlatLaf.style", "arc: 20");

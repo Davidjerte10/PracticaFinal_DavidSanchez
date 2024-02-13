@@ -23,9 +23,11 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
-        
+        // Placeholders
+        textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
+        passwordField.putClientProperty("JTextField.placeholderText", "Inserte su contraseña");
              
-        //Redondeos
+        // Redondeos
         botonLogin.putClientProperty( "FlatLaf.style", "arc: 25" );    
         textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
         passwordField.putClientProperty("FlatLaf.style", "arc: 20");

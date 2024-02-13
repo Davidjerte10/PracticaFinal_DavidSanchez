@@ -73,6 +73,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VistaPrincipal");
         setMinimumSize(new java.awt.Dimension(900, 650));
+        setUndecorated(true);
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));

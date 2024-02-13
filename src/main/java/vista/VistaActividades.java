@@ -26,6 +26,8 @@ public class VistaActividades extends javax.swing.JFrame {
         FlatLightLaf.setup();
         actividadesController = new ActividadesController();
         mostrarActividades();
+        
+        panelVolver.putClientProperty("FlatLaf.style", "arc:50");
     }
        
     // Método para mostrar las actividades en la tabla
@@ -58,6 +60,8 @@ public class VistaActividades extends javax.swing.JFrame {
         botonActividades = new javax.swing.JButton();
         botonMonitores = new javax.swing.JButton();
         botonPlan = new javax.swing.JButton();
+        panelVolver = new javax.swing.JPanel();
+        labelVolver = new javax.swing.JLabel();
         labelImagen = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         panelFrame = new controlador.PanelRound();
@@ -68,6 +72,7 @@ public class VistaActividades extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VistaActividades");
         setMinimumSize(new java.awt.Dimension(900, 650));
+        setUndecorated(true);
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -137,6 +142,35 @@ public class VistaActividades extends javax.swing.JFrame {
             }
         });
         panelLateral.add(botonPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
+
+        panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelVolverMouseClicked(evt);
+            }
+        });
+
+        labelVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/volver.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelVolverLayout = new javax.swing.GroupLayout(panelVolver);
+        panelVolver.setLayout(panelVolverLayout);
+        panelVolverLayout.setHorizontalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVolverLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelVolverLayout.setVerticalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVolverLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelLateral.add(panelVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconSmall.png"))); // NOI18N
 
@@ -273,6 +307,12 @@ public class VistaActividades extends javax.swing.JFrame {
         this.setVisible(false);      
     }//GEN-LAST:event_botonPrincipalActionPerformed
 
+    private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panelVolverMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActividades;
     private javax.swing.JButton botonMonitores;
@@ -282,9 +322,11 @@ public class VistaActividades extends javax.swing.JFrame {
     private javax.swing.JLabel labelImagen;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTitulo1;
+    private javax.swing.JLabel labelVolver;
     private javax.swing.JPanel panelFondo;
     private controlador.PanelRound panelFrame;
     private javax.swing.JPanel panelLateral;
+    private javax.swing.JPanel panelVolver;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables

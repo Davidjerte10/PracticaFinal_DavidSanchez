@@ -20,8 +20,11 @@ public class VistaPlan extends javax.swing.JFrame {
         FlatLightLaf.setup();
         
         //Redondeos
-        jTextField1.putClientProperty("FlatLaf.style", "arc: 20");
-        jTextField2.putClientProperty("FlatLaf.style", "arc: 20");
+        botonCalcular.putClientProperty( "FlatLaf.style", "arc: 25" );
+        panelVolver.putClientProperty("FlatLaf.style", "arc:50");
+        textFieldAltura.putClientProperty("FlatLaf.style", "arc: 20");
+        textFieldPeso.putClientProperty("FlatLaf.style", "arc: 20");
+        textFieldResultado.putClientProperty("FlatLaf.style", "arc: 15");
     }
 
     /**
@@ -40,17 +43,22 @@ public class VistaPlan extends javax.swing.JFrame {
         botonActividades = new javax.swing.JButton();
         botonMonitores = new javax.swing.JButton();
         botonPlan = new javax.swing.JButton();
+        panelVolver = new javax.swing.JPanel();
+        labelVolver = new javax.swing.JLabel();
         labelImagen = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         panelFrame = new controlador.PanelRound();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        textFieldAltura = new javax.swing.JTextField();
+        textFieldPeso = new javax.swing.JTextField();
+        labelPeso = new javax.swing.JLabel();
+        labelAltura = new javax.swing.JLabel();
+        botonCalcular = new javax.swing.JButton();
+        textFieldResultado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VistaPrincipal");
         setMinimumSize(new java.awt.Dimension(900, 650));
+        setUndecorated(true);
         setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -121,6 +129,35 @@ public class VistaPlan extends javax.swing.JFrame {
         });
         panelLateral.add(botonPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
 
+        panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelVolverMouseClicked(evt);
+            }
+        });
+
+        labelVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/volver.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelVolverLayout = new javax.swing.GroupLayout(panelVolver);
+        panelVolver.setLayout(panelVolverLayout);
+        panelVolverLayout.setHorizontalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVolverLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelVolverLayout.setVerticalGroup(
+            panelVolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVolverLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelLateral.add(panelVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
+
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconSmall.png"))); // NOI18N
 
         labelTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -135,37 +172,62 @@ public class VistaPlan extends javax.swing.JFrame {
         panelFrame.setRoundTopLeft(20);
         panelFrame.setRoundTopRight(20);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Inserte el peso en kg");
+        labelPeso.setForeground(new java.awt.Color(255, 255, 255));
+        labelPeso.setText("Inserte el peso en kg");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Inserte la altura en metros");
+        labelAltura.setForeground(new java.awt.Color(255, 255, 255));
+        labelAltura.setText("Inserte la altura en m");
+
+        botonCalcular.setBackground(new java.awt.Color(181, 2, 2));
+        botonCalcular.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonCalcular.setForeground(new java.awt.Color(255, 255, 255));
+        botonCalcular.setText("Calcular");
+        botonCalcular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCalcularActionPerformed(evt);
+            }
+        });
+
+        textFieldResultado.setEditable(false);
+        textFieldResultado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldResultado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout panelFrameLayout = new javax.swing.GroupLayout(panelFrame);
         panelFrame.setLayout(panelFrameLayout);
         panelFrameLayout.setHorizontalGroup(
             panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFrameLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
                 .addGroup(panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                    .addGroup(panelFrameLayout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addGroup(panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAltura)
+                            .addComponent(textFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPeso)
+                            .addComponent(textFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelFrameLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(textFieldResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         panelFrameLayout.setVerticalGroup(
             panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFrameLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
+                .addComponent(labelPeso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(labelAltura)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addComponent(textFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(textFieldResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
@@ -242,20 +304,48 @@ public class VistaPlan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonPrincipalActionPerformed
 
+    private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panelVolverMouseClicked
+
+    private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
+
+        double peso = Double.parseDouble(textFieldPeso.getText());
+        double altura = Double.parseDouble(textFieldAltura.getText());
+
+        double imc = peso / (altura * altura);
+
+        textFieldResultado.setText(String.format("IMC: %.2f", imc));
+
+        if (imc < 18.5) {
+            textFieldResultado.setText(textFieldResultado.getText() + "\nNecesita aumentar peso.");
+        } else if (imc >= 18.5 && imc < 24.9) {
+            textFieldResultado.setText(textFieldResultado.getText() + "\nPeso saludable.");
+        } else {
+            textFieldResultado.setText(textFieldResultado.getText() + "\nNecesita reducir peso.");
+        }
+    }//GEN-LAST:event_botonCalcularActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActividades;
+    private javax.swing.JButton botonCalcular;
     private javax.swing.JButton botonMonitores;
     private javax.swing.JButton botonPlan;
     private javax.swing.JButton botonPrincipal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel labelAltura;
     private javax.swing.JLabel labelFotoPerfil;
     private javax.swing.JLabel labelImagen;
+    private javax.swing.JLabel labelPeso;
     private javax.swing.JLabel labelTitulo;
+    private javax.swing.JLabel labelVolver;
     private javax.swing.JPanel panelFondo;
     private controlador.PanelRound panelFrame;
     private javax.swing.JPanel panelLateral;
+    private javax.swing.JPanel panelVolver;
+    private javax.swing.JTextField textFieldAltura;
+    private javax.swing.JTextField textFieldPeso;
+    private javax.swing.JTextField textFieldResultado;
     // End of variables declaration//GEN-END:variables
 }

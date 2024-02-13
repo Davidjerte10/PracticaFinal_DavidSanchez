@@ -31,7 +31,10 @@ public class RecuperarPassword extends javax.swing.JFrame {
     public RecuperarPassword() {
         initComponents();
         FlatLightLaf.setup();
-                    
+        
+        // Placeholders
+        textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
+        
         //Redondeos
         textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
         botonRecuperar.putClientProperty("FlatLaf.style", "arc: 20"); 
