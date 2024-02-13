@@ -6,18 +6,13 @@ package vista;
 
 import controlador.EmailUtil;
 import com.formdev.flatlaf.FlatLightLaf;
-import controlador.HibernateUtil;
+import controlador.UsuariosController;
 import java.security.SecureRandom;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import modelo.Usuarios;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.mindrot.jbcrypt.BCrypt;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -71,6 +66,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         labelRecuperar.setForeground(new java.awt.Color(181, 2, 2));
         labelRecuperar.setText("RECUPERAR");
 
+        textFieldCorreo.setToolTipText("Inserte su correo electrónico");
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCorreoActionPerformed(evt);
@@ -85,6 +81,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         botonRecuperar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonRecuperar.setForeground(new java.awt.Color(255, 255, 255));
         botonRecuperar.setText("Recuperar");
+        botonRecuperar.setToolTipText("Pulse para que se le envie a su correo una nueva contraseña");
         botonRecuperar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRecuperar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +93,7 @@ public class RecuperarPassword extends javax.swing.JFrame {
         labelIcono.setText("jLabel1");
 
         panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setToolTipText("Pulse para volver al login");
         panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,6 +185,10 @@ public class RecuperarPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
+    /**
+     * Metodo action performed que se encarga del envio del correo y de actualizar la contraseña
+     * @param evt 
+     */
     private void botonRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRecuperarActionPerformed
         // Configurar envío del correo
         final String fromEmail = "davidjerte10@gmail.com";
@@ -234,51 +236,24 @@ public class RecuperarPassword extends javax.swing.JFrame {
         
         // Convertir el StringBuilder en String para poder pasarlo al método
         String nuevaPasswordString = nuevaPassword.toString();
+        
+        UsuariosController usuariosController = new UsuariosController();
+        usuariosController.actualizarPassword(toEmail, nuevaPasswordString);
 
-        // Llamada al Método que actualiza la contraseña en la base de datos
-        actualizarPassword(toEmail, nuevaPasswordString);
-
-        System.out.println("Correo enviado y contraseña actualizada con éxito.");
+        JOptionPane.showMessageDialog(null, "Correo enviado y contraseña cambiada con éxito"
+                + "\nRevise su correo y ponga la nueva contraseña enviada");
     }//GEN-LAST:event_botonRecuperarActionPerformed
 
+    /**
+     * Metodo mouse clicked para volver al login
+     * @param evt 
+     */
     private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
         Login login = new Login();
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_panelVolverMouseClicked
-     
-    private void actualizarPassword(String correo, String nuevaPassword) {
-        try {
-            // Establecer conexión
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            // He tenido que importar así a Session porque me daba fallo con el otro import del correo
-            org.hibernate.Session sesion = sessionFactory.openSession();
-            
-            Transaction tx = sesion.beginTransaction();
-
-            Query q = sesion.createQuery("FROM Usuarios WHERE email = :correo");
-            q.setParameter("correo", correo);
-
-            Usuarios usuario = (Usuarios) q.uniqueResult();
-
-            if (usuario != null) {
-                // Actualizar la contraseña del usuario
-                usuario.setPassword(BCrypt.hashpw(nuevaPassword, BCrypt.gensalt()));
-
-                sesion.save(usuario);
-                tx.commit();
-
-                System.out.println("Contraseña actualizada en la base de datos.");
-            } else {
-                System.out.println("Usuario no encontrado en la base de datos.");
-            }
-
-            sesion.close();
-        } catch (HibernateException e) {
-            System.out.println("Error al actualizar la contraseña en la base de datos.");
-        }
-}
-    
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRecuperar;
     private javax.swing.JLabel labelCorreo;

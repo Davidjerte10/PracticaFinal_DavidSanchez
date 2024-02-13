@@ -17,6 +17,10 @@ import org.hibernate.query.Query;
 public class ActividadesController {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     
+    /**
+     * Metodo que obtiene la lista de actividades de la base de datos
+     * @return lista actividades
+     */
     public List<Actividades> obtenerActividades() {
         Session sesion = sessionFactory.openSession();
 

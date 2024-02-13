@@ -6,6 +6,7 @@ package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.UsuariosController;
+import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 
@@ -80,6 +81,7 @@ public class Registro extends javax.swing.JFrame {
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Contraseña");
 
+        textFieldNombre.setToolTipText("Inserte su nombre");
         textFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldNombreActionPerformed(evt);
@@ -94,6 +96,7 @@ public class Registro extends javax.swing.JFrame {
         botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistro.setText("REGISTRATE !");
+        botonRegistro.setToolTipText("Pulse para registrase");
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +107,7 @@ public class Registro extends javax.swing.JFrame {
         labelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
         labelIcono.setText("jLabel1");
 
+        textFieldApellidos.setToolTipText("Inserte sus apellidos");
         textFieldApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldApellidosActionPerformed(evt);
@@ -114,6 +118,7 @@ public class Registro extends javax.swing.JFrame {
         labelApellidos.setForeground(new java.awt.Color(255, 255, 255));
         labelApellidos.setText("Apellidos");
 
+        textFieldCorreo.setToolTipText("Inserte su correo electrónico");
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCorreoActionPerformed(evt);
@@ -127,6 +132,7 @@ public class Registro extends javax.swing.JFrame {
         checkBoxTerminos.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         checkBoxTerminos.setForeground(new java.awt.Color(181, 2, 2));
         checkBoxTerminos.setText("Acepto los términos y condiciones");
+        checkBoxTerminos.setToolTipText("Pulse si acepta los términos y condicines");
         checkBoxTerminos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkBoxTerminos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +140,10 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        passwordField.setToolTipText("Inserte su contraseña");
+
         panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setToolTipText("Pulse para volver al login");
         panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -267,6 +276,10 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxTerminosActionPerformed
 
+    /**
+     * Metodo action performed que registra el usuario en la base de datos
+     * @param evt 
+     */
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // Recuperar la información de los campos de texto
         String nombre = textFieldNombre.getText();
@@ -279,7 +292,7 @@ public class Registro extends javax.swing.JFrame {
 
         // Validar que los campos no estén vacíos
         if (nombre.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-            System.out.println("Por favor, complete todos los campos.");
+            JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -290,10 +303,15 @@ public class Registro extends javax.swing.JFrame {
         
         usuariosController.registrarUsuario(nombre, apellidos, correo, hashPassword);
             
-        System.out.println("Usuario insertado correctamente");
+        JOptionPane.showMessageDialog(null, "Usuario insertado correctamente"
+                + "\nVuelva al login para entrar al programa");
             
     }//GEN-LAST:event_botonRegistroActionPerformed
 
+    /**
+     * Metodo para volver al login
+     * @param evt 
+     */
     private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
         Login login = new Login();
         login.setVisible(true);

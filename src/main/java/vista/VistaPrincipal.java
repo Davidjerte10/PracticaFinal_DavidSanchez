@@ -7,6 +7,7 @@ package vista;
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.UsuariosController;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuarios;
 
@@ -24,13 +25,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public VistaPrincipal() {
         initComponents();
         FlatLightLaf.setup();
+        
         usuariosController = new UsuariosController();
         mostrarUsuarios();
         
+        // Redondeos
         panelVolver.putClientProperty("FlatLaf.style", "arc:50");
     }
        
-    // Método para mostrar los usuarios en la tabla
+    /**
+     * Metodo que muestra los usuarios en una tabla
+     */
     private void mostrarUsuarios() {
         List<Usuarios> listaUsuarios = usuariosController.obtenerUsuarios();
 
@@ -89,6 +94,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         botonPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         botonPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPrincipal.png"))); // NOI18N
         botonPrincipal.setText("Principal");
+        botonPrincipal.setToolTipText("Pulse para ir a principal");
         botonPrincipal.setBorderPainted(false);
         botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPrincipal.setIconTextGap(30);
@@ -104,6 +110,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         botonActividades.setForeground(new java.awt.Color(255, 255, 255));
         botonActividades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconActividades.png"))); // NOI18N
         botonActividades.setText("Actividades");
+        botonActividades.setToolTipText("Pulse para ir a actividades");
         botonActividades.setBorderPainted(false);
         botonActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActividades.setIconTextGap(15);
@@ -119,6 +126,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         botonMonitores.setForeground(new java.awt.Color(255, 255, 255));
         botonMonitores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconMonitores.png"))); // NOI18N
         botonMonitores.setText("Monitores");
+        botonMonitores.setToolTipText("Pulse para ir a monitores");
         botonMonitores.setBorderPainted(false);
         botonMonitores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonMonitores.setIconTextGap(22);
@@ -134,6 +142,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         botonPlan.setForeground(new java.awt.Color(255, 255, 255));
         botonPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPlan.png"))); // NOI18N
         botonPlan.setText("Plan");
+        botonPlan.setToolTipText("Pulse para ir a plan");
         botonPlan.setBorderPainted(false);
         botonPlan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPlan.setIconTextGap(53);
@@ -145,6 +154,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         panelLateral.add(botonPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
 
         panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setToolTipText("Pulse para cerrar sesión");
         panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -283,6 +293,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para mostrar la vista monitores
+     * @param evt 
+     */
     private void botonMonitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMonitoresActionPerformed
         // TODO add your handling code here:ç
         VistaMonitores vistaMonitores = new VistaMonitores();
@@ -290,6 +304,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonMonitoresActionPerformed
 
+    /**
+     * Metodo para mostrar la vista plan
+     * @param evt 
+     */
     private void botonPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlanActionPerformed
         // TODO add your handling code here:
         VistaPlan vistaPlan = new VistaPlan();
@@ -297,6 +315,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonPlanActionPerformed
 
+    /**
+     * Metodo para mostrar la vista actividades
+     * @param evt 
+     */
     private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
         // TODO add your handling code here:
         VistaActividades vistaActividades = new VistaActividades();
@@ -309,7 +331,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonPrincipalActionPerformed
 
+    /**
+     * Metodo para cerrar sesion y volver al login
+     * @param evt 
+     */
     private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        JOptionPane.showMessageDialog(null, "Cerrando sesión");
         Login login = new Login();
         login.setVisible(true);
         this.setVisible(false);

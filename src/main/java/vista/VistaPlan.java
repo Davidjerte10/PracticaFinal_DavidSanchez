@@ -5,6 +5,7 @@
 package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,6 +75,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         botonPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPrincipal.png"))); // NOI18N
         botonPrincipal.setText("Principal");
+        botonPrincipal.setToolTipText("Pulse para ir a principal");
         botonPrincipal.setBorderPainted(false);
         botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPrincipal.setIconTextGap(30);
@@ -89,6 +91,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonActividades.setForeground(new java.awt.Color(255, 255, 255));
         botonActividades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconActividades.png"))); // NOI18N
         botonActividades.setText("Actividades");
+        botonActividades.setToolTipText("Pulse para ir a actividades");
         botonActividades.setBorderPainted(false);
         botonActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActividades.setIconTextGap(15);
@@ -104,6 +107,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonMonitores.setForeground(new java.awt.Color(255, 255, 255));
         botonMonitores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconMonitores.png"))); // NOI18N
         botonMonitores.setText("Monitores");
+        botonMonitores.setToolTipText("Pulse para ir a monitores");
         botonMonitores.setBorderPainted(false);
         botonMonitores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonMonitores.setIconTextGap(22);
@@ -119,6 +123,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonPlan.setForeground(new java.awt.Color(255, 255, 255));
         botonPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPlan.png"))); // NOI18N
         botonPlan.setText("Plan");
+        botonPlan.setToolTipText("Pulse para ir a plan");
         botonPlan.setBorderPainted(false);
         botonPlan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPlan.setIconTextGap(53);
@@ -130,6 +135,7 @@ public class VistaPlan extends javax.swing.JFrame {
         panelLateral.add(botonPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 137, -1));
 
         panelVolver.setBackground(new java.awt.Color(255, 255, 255));
+        panelVolver.setToolTipText("Pulse para cerrar sesión");
         panelVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,6 +178,10 @@ public class VistaPlan extends javax.swing.JFrame {
         panelFrame.setRoundTopLeft(20);
         panelFrame.setRoundTopRight(20);
 
+        textFieldAltura.setToolTipText("Inserte su altura en metros");
+
+        textFieldPeso.setToolTipText("Inserte su peso en kilogramos");
+
         labelPeso.setForeground(new java.awt.Color(255, 255, 255));
         labelPeso.setText("Inserte el peso en kg");
 
@@ -182,6 +192,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonCalcular.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonCalcular.setForeground(new java.awt.Color(255, 255, 255));
         botonCalcular.setText("Calcular");
+        botonCalcular.setToolTipText("Pulse para calcular su imc");
         botonCalcular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +290,10 @@ public class VistaPlan extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para mostrar la vista monitores
+     * @param evt 
+     */
     private void botonMonitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMonitoresActionPerformed
         // TODO add your handling code here:ç
         VistaMonitores vistaMonitores = new VistaMonitores();
@@ -289,7 +304,11 @@ public class VistaPlan extends javax.swing.JFrame {
     private void botonPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonPlanActionPerformed
-
+    
+    /**
+     * Metodo para mostrar la vista actividades
+     * @param evt 
+     */
     private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
         // TODO add your handling code here:
         VistaActividades vistaActividades = new VistaActividades();
@@ -297,6 +316,10 @@ public class VistaPlan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonActividadesActionPerformed
 
+    /**
+     * Metodo para mostrar la vista principal
+     * @param evt 
+     */
     private void botonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrincipalActionPerformed
         // TODO add your handling code here:
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
@@ -304,12 +327,21 @@ public class VistaPlan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonPrincipalActionPerformed
 
+    /**
+     * Metodo para cerrar sesion y volver al login
+     * @param evt 
+     */
     private void panelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVolverMouseClicked
+        JOptionPane.showMessageDialog(null, "Cerrando sesión");
         Login login = new Login();
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_panelVolverMouseClicked
 
+    /**
+     * Metodo que calcula el imc y lo muestra al usuario
+     * @param evt 
+     */
     private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
 
         double peso = Double.parseDouble(textFieldPeso.getText());

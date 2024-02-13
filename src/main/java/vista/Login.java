@@ -6,6 +6,7 @@ package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import controlador.UsuariosController;
+import javax.swing.JOptionPane;
 import modelo.Usuarios;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -70,6 +71,7 @@ public class Login extends javax.swing.JFrame {
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Contraseña");
 
+        textFieldCorreo.setToolTipText("Inserte su correo electrónico");
         textFieldCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +87,7 @@ public class Login extends javax.swing.JFrame {
         botonLogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(255, 255, 255));
         botonLogin.setText("Login");
+        botonLogin.setToolTipText("Pulse para entrar al programa");
         botonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +101,7 @@ public class Login extends javax.swing.JFrame {
         labelOlvidada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         labelOlvidada.setForeground(new java.awt.Color(181, 2, 2));
         labelOlvidada.setText("Contraseña olvidada?");
+        labelOlvidada.setToolTipText("Pulse si se le ha olvidado la contraseña");
         labelOlvidada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelOlvidada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,6 +109,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        passwordField.setToolTipText("Inserte su contraseña");
         passwordField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +125,7 @@ public class Login extends javax.swing.JFrame {
         botonRegistro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistro.setText("No tengo cuenta");
+        botonRegistro.setToolTipText("Pulse si no tiene cuenta");
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +217,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldCorreoActionPerformed
 
+    /**
+     * Metodo action performed que se encarga de el logueo en la base de datos
+     * @param evt 
+     */
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
         // Coger la información de los campos de texto
         String correo = textFieldCorreo.getText();
@@ -221,7 +231,7 @@ public class Login extends javax.swing.JFrame {
 
         // Validar que los campos no estén vacíos
         if (correo.isEmpty() || password.isEmpty()) {
-            System.out.println("Por favor, complete todos los campos.");
+            JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -230,18 +240,22 @@ public class Login extends javax.swing.JFrame {
         Usuarios usuario = usuariosController.login(correo);
         // Verificar si se encontró un usuario con el correo proporcionado
         if (usuario != null && BCrypt.checkpw(password, usuario.getPassword())) {
-            System.out.println("Inicio de sesión exitoso");
+            JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
 
             VistaPrincipal vistaPrincipal = new VistaPrincipal();
             vistaPrincipal.setVisible(true);
             this.setVisible(false);
 
         } else {
-            System.out.println("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
+            JOptionPane.showMessageDialog(null, "Correo o contraseña erroneos", "Error", JOptionPane.ERROR_MESSAGE);
         }
             
     }//GEN-LAST:event_botonLoginActionPerformed
 
+    /**
+     * Metodo mouse clicked que se encarga de abrir la vista RecuperarPassword
+     * @param evt 
+     */
     private void labelOlvidadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidadaMouseClicked
         RecuperarPassword recuperar = new RecuperarPassword();
         recuperar.setVisible(true);
@@ -252,6 +266,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
+    /**
+     * Metodo action performed que se encarga de abrir la vista Registro
+     * @param evt 
+     */
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
         Registro registro = new Registro();

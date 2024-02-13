@@ -128,6 +128,7 @@
                   <Image iconType="3" name="/img/iconPrincipal.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Principal"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para ir a principal"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -158,6 +159,7 @@
                   <Image iconType="3" name="/img/iconActividades.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Actividades"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para ir a actividades"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -188,6 +190,7 @@
                   <Image iconType="3" name="/img/iconMonitores.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Monitores"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para ir a monitores"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -218,6 +221,7 @@
                   <Image iconType="3" name="/img/iconPlan.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Plan"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para ir a plan"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -238,6 +242,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para cerrar sesi&#xf3;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -364,8 +369,14 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="textFieldAltura">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Inserte su altura en metros"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldPeso">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Inserte su peso en kilogramos"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelPeso">
               <Properties>
@@ -395,6 +406,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Calcular"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pulse para calcular su imc"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
