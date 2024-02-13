@@ -68,7 +68,7 @@ public class VistaMonitores extends javax.swing.JFrame {
         labelTitulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("VistaPrincipal");
+        setTitle("VistaMonitores");
         setMinimumSize(new java.awt.Dimension(900, 650));
         setResizable(false);
 
@@ -86,6 +86,7 @@ public class VistaMonitores extends javax.swing.JFrame {
         botonPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPrincipal.png"))); // NOI18N
         botonPrincipal.setText("Principal");
         botonPrincipal.setBorderPainted(false);
+        botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPrincipal.setIconTextGap(30);
         botonPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +101,7 @@ public class VistaMonitores extends javax.swing.JFrame {
         botonActividades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconActividades.png"))); // NOI18N
         botonActividades.setText("Actividades");
         botonActividades.setBorderPainted(false);
+        botonActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActividades.setIconTextGap(15);
         botonActividades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +116,7 @@ public class VistaMonitores extends javax.swing.JFrame {
         botonMonitores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconMonitores.png"))); // NOI18N
         botonMonitores.setText("Monitores");
         botonMonitores.setBorderPainted(false);
+        botonMonitores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonMonitores.setIconTextGap(22);
         botonMonitores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +131,7 @@ public class VistaMonitores extends javax.swing.JFrame {
         botonPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconPlan.png"))); // NOI18N
         botonPlan.setText("Plan");
         botonPlan.setBorderPainted(false);
+        botonPlan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPlan.setIconTextGap(53);
         botonPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +257,9 @@ public class VistaMonitores extends javax.swing.JFrame {
 
     private void botonPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlanActionPerformed
         // TODO add your handling code here:
+        VistaPlan vistaPlan = new VistaPlan();
+        vistaPlan.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonPlanActionPerformed
 
     private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
