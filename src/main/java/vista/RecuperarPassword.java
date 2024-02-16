@@ -27,6 +27,9 @@ public class RecuperarPassword extends javax.swing.JFrame {
         initComponents();
         FlatLightLaf.setup();
         
+        // Boton por defecto
+        getRootPane().setDefaultButton(botonRecuperar);
+        
         // Placeholders
         textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
         

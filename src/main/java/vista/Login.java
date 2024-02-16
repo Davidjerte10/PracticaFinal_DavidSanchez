@@ -11,7 +11,6 @@ import modelo.Usuarios;
 import org.mindrot.jbcrypt.BCrypt;
 
 
-
 /**
  *
  * @author David Sanchez Avila
@@ -24,6 +23,9 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
+        // Boton por defecto
+        getRootPane().setDefaultButton(botonLogin);
+        
         // Placeholders
         textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
         passwordField.putClientProperty("JTextField.placeholderText", "Inserte su contraseña");
@@ -33,6 +35,8 @@ public class Login extends javax.swing.JFrame {
         textFieldCorreo.putClientProperty("FlatLaf.style", "arc: 20");
         passwordField.putClientProperty("FlatLaf.style", "arc: 20");
         botonRegistro.putClientProperty( "FlatLaf.style", "arc: 25" );
+        
+
     }
 
     /**

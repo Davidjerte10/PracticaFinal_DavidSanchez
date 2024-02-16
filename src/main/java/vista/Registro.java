@@ -24,6 +24,9 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
         FlatLightLaf.setup();
+        
+        // Boton por defecto
+        getRootPane().setDefaultButton(botonRegistro);
          
         // Placeholders
         textFieldCorreo.putClientProperty("JTextField.placeholderText", "Inserte su correo");
