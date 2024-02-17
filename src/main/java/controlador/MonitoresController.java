@@ -8,6 +8,7 @@ import java.util.List;
 import modelo.Monitores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -29,5 +30,69 @@ public class MonitoresController {
         List<Monitores> listaMonitores = q.getResultList();
 
         return listaMonitores;
+    }
+    
+    /**
+     * Metodo que registra un monitor en la base de datos
+     * @param nombre
+     * @param apellidos
+     * @param actividad 
+     */
+    public void registrarMonitor(String nombre, String apellidos, String actividad) {           
+        Session sesion = sessionFactory.openSession();
+        Transaction tx = sesion.beginTransaction();
+
+        Monitores nuevoMonitor = new Monitores();
+        
+        nuevoMonitor.setNombre(nombre);
+        nuevoMonitor.setApellidos(apellidos);
+        nuevoMonitor.setActividad(actividad);
+
+        sesion.save(nuevoMonitor);
+        tx.commit();
+    }
+    
+    /**
+     * Metodo que actualiza un monitor en la base de datos
+     * @param nombre
+     * @param apellidos
+     * @param actividad
+     * @param id
+     * @return 
+     */
+    public int actualizarMonitor(String nombre, String apellidos, String actividad, int id) {
+        Session sesion = sessionFactory.openSession();
+        Transaction tx = sesion.beginTransaction();
+
+        Query q = sesion.createQuery("update Monitores set nombre = :nombre, apellidos = :apellidos, actividad = :actividad where id = :id");
+        q.setParameter("nombre", nombre);
+        q.setParameter("apellidos", apellidos);
+        q.setParameter("actividad", actividad);
+        q.setParameter("id", id);
+
+        int filasAfectadas = q.executeUpdate();
+        tx.commit();
+        
+        return filasAfectadas;
+        
+    }
+    
+    /**
+     * Metodo que elimina un monitor en la base de datos
+     * @param id
+     * @return 
+     */
+    public int eliminarMonitor(int id) {
+        Session sesion = sessionFactory.openSession();
+        Transaction tx = sesion.beginTransaction();
+
+        Query q = sesion.createQuery("delete Monitores where id = :id");
+        q.setParameter("id", id);
+
+        int filasAfectadas = q.executeUpdate();
+        tx.commit();
+        
+        return filasAfectadas;
+        
     }
 }

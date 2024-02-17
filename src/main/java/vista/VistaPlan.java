@@ -46,6 +46,7 @@ public class VistaPlan extends javax.swing.JFrame {
         botonPlan = new javax.swing.JButton();
         panelVolver = new javax.swing.JPanel();
         labelVolver = new javax.swing.JLabel();
+        labelBarraLateral = new javax.swing.JLabel();
         labelImagen = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         panelFrame = new controlador.PanelRound();
@@ -163,6 +164,11 @@ public class VistaPlan extends javax.swing.JFrame {
         );
 
         panelLateral.add(panelVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
+
+        labelBarraLateral.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelBarraLateral.setForeground(new java.awt.Color(255, 255, 255));
+        labelBarraLateral.setText("ADMINISTRADOR");
+        panelLateral.add(labelBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconSmall.png"))); // NOI18N
 
@@ -367,6 +373,7 @@ public class VistaPlan extends javax.swing.JFrame {
     private javax.swing.JButton botonPlan;
     private javax.swing.JButton botonPrincipal;
     private javax.swing.JLabel labelAltura;
+    private javax.swing.JLabel labelBarraLateral;
     private javax.swing.JLabel labelFotoPerfil;
     private javax.swing.JLabel labelImagen;
     private javax.swing.JLabel labelPeso;

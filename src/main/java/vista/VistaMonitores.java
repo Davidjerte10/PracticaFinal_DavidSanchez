@@ -31,6 +31,10 @@ public class VistaMonitores extends javax.swing.JFrame {
         
         // Redondeos
         panelVolver.putClientProperty("FlatLaf.style", "arc:50");
+        botonInsertar.putClientProperty( "FlatLaf.style", "arc: 25" );
+        botonModificar.putClientProperty( "FlatLaf.style", "arc: 25" );
+        botonEliminar.putClientProperty( "FlatLaf.style", "arc: 25" );
+        
     }
        
     /**
@@ -40,12 +44,13 @@ public class VistaMonitores extends javax.swing.JFrame {
         List<Monitores> listaMonitores = monitoresController.obtenerMonitores();
 
         DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
         model.addColumn("Actividad");
 
         for (Monitores monitor : listaMonitores) {
-            model.addRow(new Object[]{monitor.getNombre(), monitor.getApellidos(), monitor.getActividad()});
+            model.addRow(new Object[]{monitor.getId(), monitor.getNombre(), monitor.getApellidos(), monitor.getActividad()});
         }
 
         tabla.setModel(model);
@@ -69,12 +74,16 @@ public class VistaMonitores extends javax.swing.JFrame {
         botonPlan = new javax.swing.JButton();
         panelVolver = new javax.swing.JPanel();
         labelVolver = new javax.swing.JLabel();
+        labelBarraLateral = new javax.swing.JLabel();
         labelImagen = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         panelFrame = new controlador.PanelRound();
         scrollPane = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         labelTitulo1 = new javax.swing.JLabel();
+        botonInsertar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VistaMonitores");
@@ -184,6 +193,11 @@ public class VistaMonitores extends javax.swing.JFrame {
 
         panelLateral.add(panelVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
+        labelBarraLateral.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelBarraLateral.setForeground(new java.awt.Color(255, 255, 255));
+        labelBarraLateral.setText("ADMINISTRADOR");
+        panelLateral.add(labelBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconSmall.png"))); // NOI18N
 
         labelTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -222,6 +236,39 @@ public class VistaMonitores extends javax.swing.JFrame {
         labelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo1.setText("LISTA MONITORES");
 
+        botonInsertar.setBackground(new java.awt.Color(181, 2, 2));
+        botonInsertar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonInsertar.setForeground(new java.awt.Color(255, 255, 255));
+        botonInsertar.setText("Insertar");
+        botonInsertar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInsertarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setBackground(new java.awt.Color(181, 2, 2));
+        botonModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonEliminar.setBackground(new java.awt.Color(181, 2, 2));
+        botonEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelFrameLayout = new javax.swing.GroupLayout(panelFrame);
         panelFrame.setLayout(panelFrameLayout);
         panelFrameLayout.setHorizontalGroup(
@@ -235,6 +282,14 @@ public class VistaMonitores extends javax.swing.JFrame {
                         .addGap(187, 187, 187)
                         .addComponent(labelTitulo1)))
                 .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(panelFrameLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(botonInsertar)
+                .addGap(123, 123, 123)
+                .addComponent(botonModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonEliminar)
+                .addGap(45, 45, 45))
         );
         panelFrameLayout.setVerticalGroup(
             panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,8 +297,13 @@ public class VistaMonitores extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(labelTitulo1)
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(panelFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonInsertar)
+                    .addComponent(botonModificar)
+                    .addComponent(botonEliminar))
+                .addGap(107, 107, 107))
         );
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
@@ -343,11 +403,48 @@ public class VistaMonitores extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_panelVolverMouseClicked
 
+    /**
+     * Metodo que muestra la vista formulario
+     * @param evt 
+     */
+    private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
+        // TODO add your handling code here:
+        VistaFormulario formulario = new VistaFormulario();
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonInsertarActionPerformed
+
+    /**
+     * Metodo que muestra la vista formularioMod
+     * @param evt 
+     */
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        VistaFormularioMod formulario = new VistaFormularioMod();
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    /**
+     * Metodo que muestra la vista formularioEli
+     * @param evt 
+     */
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+        VistaFormularioEli formulario = new VistaFormularioEli();
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActividades;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonInsertar;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMonitores;
     private javax.swing.JButton botonPlan;
     private javax.swing.JButton botonPrincipal;
+    private javax.swing.JLabel labelBarraLateral;
     private javax.swing.JLabel labelFotoPerfil;
     private javax.swing.JLabel labelImagen;
     private javax.swing.JLabel labelTitulo;
